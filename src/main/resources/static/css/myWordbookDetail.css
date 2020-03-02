@@ -1,0 +1,181 @@
+*{
+    padding: 0;
+    margin: 0;
+    /*font-family: "华文细黑";*/
+}
+body{
+    position: relative;
+}
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    /*height: 50px;*/
+    padding: 5px 15px 5px 15px;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    top: 0;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+}
+.topTab>.row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+.topTab span{
+    width: 80%;
+}
+.topTab .back{
+
+}
+.topTab {
+    text-align: center;
+}
+.topTab  p{
+    font-size: 18px;
+    margin: 0;
+
+}
+
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: #f7f7f7;
+    /*margin: 0;*/
+    /*padding: 0;*/
+}
+
+.wordTypes{
+    padding: 0;
+    margin: 0;
+    /*padding: 10px 10px 0 3%;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+}
+.wordTypes  div{
+    padding: 0;
+}
+.wordTypes  div div{
+    text-align: center;
+    width: 90%;
+    padding: 0;
+    margin:  0 5%;
+
+    background-color: #ff904b;
+    cursor: pointer;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 10px;
+    line-height: 24px;
+    box-shadow: 2px 2px 2px rgba(60, 60, 60, 0.41)
+}
+
+
+.wordTypes .selected{
+    background-color: #ff7d64;
+}
+.wordTypes  div p{
+    margin: 0 2px;
+    display: inline-block;
+    font-size: 14px;
+    /*padding: 2px;*/
+    font-weight: 700;
+}
+
+.wordTypes>div>div:hover{
+    background-color: #ff7d64;
+}
+
+#words{
+    position: relative;
+    margin-top: 90px;
+    font-size: 14px;
+}
+
+.wordMean{
+    font-size: 12px;
+}
+#words .row{
+    background-color: #fff;
+    /*padding: 1%;*/
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(34, 51, 51, 0.29);
+    margin: 0 -10px 0px -10px;
+    /*border-bottom: 1px solid rgba(34, 51, 51, 0.95);*/
+    /*margin: 0 -10px 0 -10px;*/
+}
+#words .row p{
+    margin-bottom: 2px;
+    font-weight: 700;
+}
+#words .row span{
+    font-size: 18px;
+    line-height:26px;
+}
+
+#words .row .pron{
+    cursor: pointer;
+}
+#words .row .pron:hover{
+    color: #2aabd2;
+}
+
+#words .row .word-line{
+    height: 1px;
+    background-color: rgba(60,60,60,0.47);
+}
+
+#words .wordBox .cutBox .cutWord{
+    font-size: 14px;
+    padding-top: 10%;
+    cursor: pointer;
+}
+
+.cutBox,.reLearnBox{
+    cursor: pointer;
+    display: none;
+}
+
+
+.showWordsBtn{
+    background-color: #5CB8FF;
+    cursor: pointer;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px;
+    z-index: 10;
+}
+
+.showWordsBtn:hover{
+    background-color: #60d1ff;
+}
+.showWordsBtn p{
+    line-height: 220%;
+    margin: 0;
+    font-weight: bold;
+    color: #e2fff6;
+}
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+     p{
+        font-size: 18px;
+        line-height: 22px;
+    }
+    #words .word .cutBox .cutWord{
+        font-size: 16px;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+     p,#words .wordBox .cutBox .cutWord{
+        font-size: 22px;
+        line-height: 26px;
+    }
+    #words .wordBox .cutBox .cutWord{
+        font-size: 18px;
+    }
+}

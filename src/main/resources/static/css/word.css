@@ -1,0 +1,111 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#meanBtn{
+
+}
+
+#meanBtn>span{
+    font-size: 18px;
+    font-family: "KaiTi";
+    box-shadow: black 0 5px 5px ;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 3px;
+    background-color: #e9e9e9;
+    cursor: pointer;
+    width: 20%;
+}
+.meaningArea{
+    display: none;
+    margin-bottom: 90px;
+}
+.meaningArea > div{
+    font-size: 18px;
+    font-family: "KaiTi";
+
+}
+
+.word_bottom{
+    border-top: 1px solid #bfbfbf;
+    z-index: 999;
+    background-color: rgb(255, 255, 255);
+}
+
+.word_bottom>div{
+    font-family: "KaiTi";
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 14px 0;
+    border-right: 1px solid #bfbfbf;
+}
+.glyphicon-volume-down{
+    /*line-height: 23px;*/
+    cursor: pointer;
+    font-size: 18px;
+}
+.glyphicon-volume-down:hover{
+    color: #527db0;
+}
+
+.hidden-xs > div{
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: #223333 0 3px 3px ;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    background-color: #e9e9e9;
+    margin-bottom: 10px;
+}
+.glyphicon-menu-left{
+    cursor: pointer;
+    padding: 5px;
+}
+.glyphicon-menu-left:hover{
+    background-color: #fff;
+}
+.wordDetailBox{
+    background-color: rgba(216, 228, 231, 0.56);
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 2px 15px rgba(35, 51, 51, 0.58);
+    margin-bottom: 20px;
+    display: none;
+
+}
+
+.wordDetailBox p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.wordDetailBox #wordTypes {
+    font-style: italic;
+}
+
+.sentences .sentence .senPron{
+    padding: 0;
+}
+
+.sentences .sentence{
+    margin-bottom: 8px;
+}
+
+.sentences .sentence p{
+    font-size: 14px;
+
+    line-height: 20px;
+
+}
+
+.sentences .sentence_cn p{
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(35, 51, 51, 0.66);
+}
+.wordPara{
+
+}

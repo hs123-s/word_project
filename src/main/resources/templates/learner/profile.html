@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <!--    底部样式-->
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+
+
+
+
+    <div class="container">
+        <div class="row userInfo" style="padding: 20px 5px;background-color: #a6b8e9;margin: 5px -10px;">
+            <div class="col-xs-offset-1 col-xs-10">
+                <h3 class="nickname">我要好好学习</h3>
+                <p class="">已加入：123天</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container functionList">
+        <div class="row" style="padding: 20px 5px;background-color: #FFFFFF;margin: 5px -5px;">
+            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1" style="">
+                <img src="/img/learner/edit.png" alt="">
+            </div>
+            <div class="col-xs-10 col-sm-11 edit function">
+                <a href="javascript:editProfile()"><p>修改个人信息</p></a>
+            </div>
+
+            <div class="col-xs-2 col-sm-1 col-md-1">
+                <img src="/img/learner/login-out.png" alt="">
+            </div>
+            <div class=" col-xs-10 col-sm-11 logout function">
+                <a href="/learner/loginOut"><p class="">注销账号</p></a>
+            </div>
+
+            <div class="col-xs-2 col-sm-1 col-md-1">
+                <img src="/img/learner/data.png" alt="">
+            </div>
+            <div class=" col-xs-10 col-sm-11 record function">
+                <a href="javascript:record()"><p>学习记录</p></a>
+            </div>
+
+            <div class="col-xs-2 col-sm-1  col-md-1">
+                <img src="/img/learner/email.png" alt="">
+            </div>
+            <div class=" col-xs-10 col-sm-11 contact function">
+                <a href="javascript:showContact();"><p>联系我们</p></a>
+            </div>
+
+            <div class="col-xs-2 col-sm-1 col-md-1">
+                <img src="/img/learner/notice.png" alt="">
+            </div>
+            <div class=" col-xs-10 col-sm-11 function">
+                <a href="javascript:notice()"><p>消息通知</p></a>
+            </div>
+
+            <div class="col-xs-2 col-sm-1 col-md-1 hidden-xs">
+                <img src="/img/learner/back32.png" alt="">
+            </div>
+            <div class=" col-xs-10 col-sm-11 function hidden-xs">
+                <a href="javascript:history.back()"><p>返回</p></a>
+            </div>
+
+        </div>
+    </div>
+
+
+<!--    联系我-->
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactHeader">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="contactHeader">联系我</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">微信号：a1170782807</p>
+                    <img src="/img/QRcode.png" alt="" style="width: 120px;margin: 0 auto;display: block;">
+                    <p class="text-center">QQ:1170782807</p>
+                    <p class="text-center">email <mailto>1170782807@qq.com</mailto></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<!--                    <button type="button submit" class="btn btn-primary create">创建</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--底部-->
+    <div style="height: 70px;"></div>
+    <!--    移动端显示此底部栏-->
+    <footer class="footer navbar-fixed-bottom  visible-xs-block"
+            style="padding: 5px 0 0 0;">
+
+        <div class="bottomFuns" style="display: flex;justify-content:space-between;flex-grow: inherit;margin: 0;">
+
+            <div class="bottomFun">
+                <a href="/wordbook/gotoWordbook">
+                    <p class="text-center font-18"><img src="/img/wordbook.png" style="height: 30px;" alt=""></p>
+                    <p class="text-center font-14">词库</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/notebook/gotoNotebook">
+                    <p class="text-center font-18"><img src="/img/notebook.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">生词</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/">
+                    <p class="text-center font-18"><img src="/img/index.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">首页</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/book/gotoShelf">
+                    <p class="text-center font-18"><img src="/img/novel.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">小说</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="#">
+                    <p class="text-center font-18"><img src="/img/mineClicked.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">我的</p>
+                </a>
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>
+
+<script src="/jq/jquery.min.js"></script>
+<!--模态框 modal.js-->
+<script src="/bootstrap-3.3.7/js/modal.js"></script>
+
+<script>
+
+
+    //联系我
+    function showContact() {
+        //打开模块框
+        $("#contact").modal("show");
+    }
+
+    //学习记录
+    function record() {
+        alert("暂未开放！");
+    }
+
+    //消息通知
+    function notice() {
+        alert("暂未开放！");
+    }
+
+    //修改个人消息
+    function editProfile() {
+        alert("暂未开放！");
+
+    }
+
+</script>

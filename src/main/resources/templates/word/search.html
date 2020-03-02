@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索单词页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../../static/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/search.css">
+</head>
+<body>
+
+<div class="container searchView">
+    <div class="row">
+        <div style="width: 100%;">
+            <span class="back"><img src="../../static/img/back.png" alt="" style="width: 35px;height: 35px;" ></span>
+            <input type="text" id="wordInput" placeholder="search">
+            <button id="searchBtn"><img src="../../static/img/search.png" alt="" style="width: 30px;height: 30px;"></button>
+        </div>
+    </div>
+<!--    提示框-->
+    <div class="row tips">
+
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+        <div><p>app</p></div>
+
+
+    </div>
+
+        
+    </div>
+</div>
+
+
+
+</body>
+
+<script src="../../static/jq/jquery.min.js"></script>
+<script src="../../static/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+<script>
+
+    $(function () {
+        $("#searchBtn").click(function () {
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                url: "/wordect/input/"+$("#wordInput").val(),
+                dataType: "json", //json类型
+                success: function(result) {
+                    // var result = JSON.stringify(result);  // 需解析，否则返回 object
+                    console.log(result);
+
+                    if(result.code === 200){
+
+                    }
+
+
+                },
+                error: function(errmsg) {
+                    console.log("Ajax获取服务器数据出错了！"+ errmsg);
+                }
+            })
+        })
+    })
+
+</script>
+</html>

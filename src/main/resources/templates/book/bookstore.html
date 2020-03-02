@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bookstore.css">
+    <!--    底部样式-->
+    <link rel="stylesheet" href="/css/footer.css">
+
+</head>
+<body style="background-color: #efefef;">
+<!--<button id="gotoShelf"> 书架 </button>-->
+
+<div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1 " style="cursor: pointer">
+            <p><span class="glyphicon glyphicon-menu-left"></span></p>
+        </div>
+        <div class="col-xs-8 col-md-8" style="position:relative;display:flex;justify-content: center;">
+            <div style="padding-left: 15px;">
+                <a href="/book/gotoShelf"><p >书架 </p></a>
+            </div>
+            <div>&nbsp;|&nbsp;</div>
+            <div style="position:relative;">
+                <p  style="font-weight: 700;"> 书城</p>
+                <div class="tabBlock" style="position:absolute;width: 15px;height: 4px;background-color:#233333;bottom: 2px;right: 9px;"></div>
+
+            </div>
+            <!--            <p style="display: inline-block;position:relative;"><span></span> | <span></span></p>-->
+
+        </div>
+        <div class="gotoBookDetail col-xs-2 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+
+
+
+    </div>
+</div>
+<div style="height: 60px;"></div>
+
+<div class="container" >
+
+    <div class="searchBox" style="position:fixed;top: 50px;z-index: 999;left: 0;right: 0;background-color: #cacbd0;height: 40px;">
+        <div class="container">
+            <input type="text" style="font-size: 14px" class="search" placeholder="搜索书籍...">
+        </div>
+
+    </div>
+<!--    分类区-->
+    <div class="tags" style="position:fixed;top: 90px;z-index: 999;left: 0;right: 0;background-color: #cacbd0;">
+        <div class="hotTags hotTagsActive"><p>热门</p></div>
+        <div class="typeTags selectTag">
+            <select name="" id="type">
+                <option value="0">-类型-</option>
+                <option value="soc">社会</option>
+                <option value="lov">爱情</option>
+                <option value="bio">传记</option>
+                <option value="sus">悬疑</option>
+                <option value="chi">儿童</option>
+                <option value="scf">科幻</option>
+                <option value="mag">魔幻</option>
+                <option value="adv">冒险</option>
+                <option value="com">喜剧</option>
+                <option value="his"> 历史</option>
+            </select>
+
+        </div>
+        <div class="hardTags selectTag">
+            <select name="" id="hard">
+                <option value="0">-难度-</option>
+                <option value="u">大学</option>
+                <option value="h">高中</option>
+                <option value="m"> 初中</option>
+            </select>
+
+        </div>
+        <div class="longTags selectTag">
+            <select name="" id="long">
+                <option value="0">-长度-</option>
+                <option value="l">长篇</option>
+                <option value="m">中篇</option>
+                <option value="s">短篇</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="row hotbooks" style="margin-top: 65px;">
+
+    </div>
+
+    <div class="row tagBooks" style="margin-top: 65px;">
+
+    </div>
+</div>
+
+
+<!--底部-->
+<div style="height: 70px;"></div>
+<!--    移动端显示此底部栏-->
+<footer class="footer navbar-fixed-bottom  visible-xs-block"
+        style="padding: 5px 0 0 0;">
+
+    <div class="bottomFuns" style="display: flex;justify-content:space-between;flex-grow: inherit;margin: 0;">
+
+        <div class="bottomFun">
+            <a href="/wordbook/gotoWordbook">
+                <p class="text-center font-18"><img src="/img/wordbook.png" style="height: 30px;" alt=""></p>
+                <p class="text-center font-14">词库</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/notebook/gotoNotebook">
+                <p class="text-center font-18"><img src="/img/notebook.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">生词</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/">
+                <p class="text-center font-18"><img src="/img/index.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">首页</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="#">
+                <p class="text-center font-18"><img src="/img/novelClicked.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">小说</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/learner/profile">
+                <p class="text-center font-18"><img src="/img/mine.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">我的</p>
+            </a>
+        </div>
+    </div>
+
+</footer>
+
+
+</body>
+
+<script src="/jq/jquery.min.js"></script>
+<script src="/bootstrap-3.3.7/js/dropdown.js"></script>
+
+<!--下拉监听-->
+<SCRIPT>
+    let type = "0";
+    let hard = "0";
+    let long = "0";
+    //监听下拉分类
+    let curr = 1;
+    $(".tags select").change(function () {
+        //获取点击的下拉框
+        let idType = $(this).attr("id");
+        //获取其值
+        let val = $(this).children('option:selected').val();
+        $(".tags select").css("background","#ff9444");
+        $(this).css("background","#ffb04e");
+        if("type" == idType){
+            type = val;
+        }else if("long" == idType){
+            long = val;
+        }else if("hard" == idType){
+            hard = val;
+        }
+        //参数
+        let bookType = type + "_" + hard + "_" + long;
+        if(bookType == "0_0_0"){
+            //就是hotbook咯
+            $(".hotbooks").fadeIn(300);
+            $(".hotTags").addClass("hotTagsActive");
+            $(".tagBooks").fadeOut(300);
+            return;
+        }
+        let url = "/book/tagbooks/"+bookType;
+        let data = {curr:curr,size:20};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            data:data,
+            url: url,
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result);
+                $(".hotTags").removeClass("hotTagsActive");
+                if(result.code === 200){
+                    //暂不自增
+                    // curr++;
+
+                    $(".hotbooks").fadeOut(300);
+                    $(".tagBooks").html("");
+                    $.each(result.books,function (i,item) {
+                        // $("#hotbooks").append("<a href='/book/gotoBookDetail?index_book="+ item.index_book+"'>"+item.title+"</a><br>")
+
+                        $(".tagBooks").append("<div class=\"book\" >\n" +
+                            "                <a href=\"/book/gotoBookDetail?index_book=" + item.index_book + "\"><img src=\""+ item.img+"\" ></a>\n" +
+                            "                <div class=\"bookNameBox\">\n" +
+                            "                    <p class=\"bookName\">"+ item.title+"</p>\n" +
+                            "                </div>\n" +
+                            "            </div>")
+
+                    })
+                    $(".tagBooks").fadeIn(300);
+                }else if(result.code == 800){
+                    //找不到书籍
+                    $(".tagBooks").html("<div class=\"book\" >\n" +
+                        "                <a href=\"#\"><img src=\"/img/book/none.png\" ></a>\n" +
+                        "            </div>");
+                }
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+            }
+        })
+
+
+    })
+
+</SCRIPT>
+<script>
+
+    //搜索
+    $(".search").keydown(function (event) {
+        //回车
+       if(event.keyCode == 13){
+           let bookName = $(this).val().trim();
+           console.log(bookName);
+           console.log(bookName.length);
+           if(bookName.length >= 30){
+               alert("参数过长！");
+               return;
+
+           }
+           if(!("" == bookName) && !(bookName == undefined)){
+               //发送请求
+               let url = "/book/getBookByName/"+bookName;
+
+               $.ajax({
+                   type: "post",
+                   async: true,     //异步执行
+                   contentType: "application/json;charset=UTF-8",
+                   url: url,
+                   dataType: "json", //json类型
+                   success: function (result) {
+                       console.log(result);
+                       $(".hotTags").removeClass("hotTagsActive");
+                       if(result.code === 200){
+
+
+                           $(".hotbooks").fadeOut(300);
+                           $(".tagBooks").html("");
+                           $.each(result.books,function (i,item) {
+
+                               $(".tagBooks").append("<div class=\"book\" >\n" +
+                                   "                <a href=\"/book/gotoBookDetail?index_book=" + item.index_book + "\"><img src=\""+ item.img+"\" ></a>\n" +
+                                   "                <div class=\"bookNameBox\">\n" +
+                                   "                    <p class=\"bookName\">"+ item.title+"</p>\n" +
+                                   "                </div>\n" +
+                                   "            </div>")
+
+                           })
+                           $(".tagBooks").fadeIn(300);
+                       }else if(result.code == 800){
+                           //找不到书籍
+                           $(".tagBooks").html("<div class=\"book\" >\n" +
+                               "                <a href=\"#\"><img src=\"/img/book/none.png\" ></a>\n" +
+                               "            </div>");
+                       }
+                   },
+                   error: function (errmsg) {
+                       console.log("Ajax获取服务器数据出错了！" + errmsg);
+                   }
+               })
+           }
+       }
+    });
+
+    //返回
+    $(".back").click(function () {
+        //回退
+        window.location.href = "/";
+    })
+
+    $(function () {
+
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/book/hotbooks",
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result);
+                if(result.code === 200){
+                    $.each(result.books,function (i,item) {
+                        // $("#hotbooks").append("<a href='/book/gotoBookDetail?index_book="+ item.index_book+"'>"+item.title+"</a><br>")
+
+                        $(".hotbooks").append("<div class=\"book\" >\n" +
+                            "                <a href=\"/book/gotoBookDetail?index_book=" + item.index_book + "\"><img src=\""+ item.img+"\" ></a>\n" +
+                            "                <div class=\"bookNameBox\">\n" +
+                            "                    <p class=\"bookName\">"+ item.title+"</p>\n" +
+                            "                </div>\n" +
+                            "            </div>")
+
+                    })
+                }
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+            }
+        })
+    });
+
+    $("#gotoShelf").click(function () {
+        window.location.href = "/book/gotoShelf"
+    })
+
+    //点击热门
+    $(".hotTags").click(function () {
+        $(".hotbooks").fadeIn(200);
+        $(".tagBooks").fadeOut(200);
+        $(this).addClass("hotTagsActive");
+        $(".tags select").css("background","#ff9444");
+    })
+</script>
+</html>

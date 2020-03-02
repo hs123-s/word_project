@@ -1,0 +1,177 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    height: 50px;
+    padding: 5px 15px 5px 15px;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+}
+.topTab .row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+.topTab span{
+    width: 80%;
+}
+.topTab .back{
+
+}
+.topTab {
+    text-align: center;
+}
+.topTab  p{
+    font-size: 18px;
+    margin: 0;
+    /*padding: 0 0 0 15px;*/
+    padding: 0;
+    cursor: pointer;
+
+}
+.topTab  p:hover{
+    background-color: rgba(60, 60, 60, 0.51);
+}
+
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: #f7f7f7;
+
+}
+
+
+#words{
+    position: relative;
+
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.wordMean{
+    font-size: 12px;
+}
+#words .row{
+    background-color: #fff;
+    padding: 1%;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(34, 51, 51, 0.29);
+    margin: 0 -10px 0 -10px;
+    /*border-bottom: 1px solid rgba(34, 51, 51, 0.95);*/
+    /*margin: 0 -10px 0 -10px;*/
+}
+#words .row p{
+    margin-bottom: 2px;
+}
+#words .row span{
+    font-size: 18px;
+    line-height:26px;
+}
+.col-xs-1{
+    padding: 0;
+}
+#words .row .glyphicon{
+    cursor: pointer;
+    padding: 0;
+}
+#words .row .glyphicon:hover{
+    color: #2aabd2;
+}
+
+#words .row .word-line{
+    height: 1px;
+    background-color: rgba(60,60,60,0.47);
+}
+.bottomBox{
+    width: 100%;
+    padding: 0 5%;
+    position:fixed;
+    bottom: 0;
+    height: 50px;
+    background-color: #cacbd0;
+}
+
+.editBtn{
+    float: left;
+    width: 20%;
+    height: 100%;
+    text-align: right;
+    margin-right: 5%;
+    /*background-color: rebeccapurple;*/
+    /*position: fixed;*/
+    /*bottom: 20px;*/
+}
+
+.editBtn span{
+    display: inline-block;
+
+    font-size: 22px;
+    padding: 5px;
+    line-height: 40px;
+    cursor: pointer;
+
+}
+
+.editBtn .active{
+    color: rgba(113, 116, 255, 0.61);
+}
+
+.editBtn span:hover{
+    color: rgba(113, 116, 255, 0.61);
+}
+
+.glyphicon-remove-circle{
+    display: none;
+}
+
+.learnBtn{
+    float: left;
+    margin: 5px 0;
+    background-color: #5CB8FF;
+    cursor: pointer;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    /*position: fixed;*/
+    /*bottom: 20px;*/
+}
+
+.learnBtn:hover{
+    background-color: #60d1ff;
+}
+
+.learnBtn p{
+    line-height: 40px;
+    margin: 0;
+    font-weight: bold;
+    color: #e2fff6;
+}
+
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    .learnBtn p{
+        font-size: 18px;
+    }
+    .bottomBox{
+        padding: 0 8%;
+    }
+
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    .learnBtn p{
+        font-size: 22px;
+    }
+
+    .bottomBox{
+        padding: 0 10%;
+    }
+}

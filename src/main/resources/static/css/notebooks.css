@@ -1,0 +1,198 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    height: 50px;
+    padding: 5px 15px 5px 15px;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+}
+.topTab .row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+.topTab span{
+    width: 80%;
+}
+.topTab .back{
+
+}
+.topTab {
+    text-align: center;
+}
+.topTab  p{
+    font-size: 18px;
+    margin: 0;
+    /*padding: 0 0 0 15px;*/
+    padding: 0;
+    cursor: pointer;
+
+}
+.topTab  p:hover{
+    background-color: rgba(60, 60, 60, 0.51);
+}
+
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: #f7f7f7;
+
+}
+
+
+.myNotebook .row{
+    background-color: #FFFFFF;
+    /*固定风格*/
+    margin: 0 -10px 0 -10px;
+    /*margin: 10px;*/
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(34, 51, 51, 0.29);
+}
+.myNotebook .row p{
+    margin: 10px 0 0 10px;
+    font-size: 16px;
+    line-height: 180%;
+    padding: 5px;
+    font-weight: 700;
+    pointer-events: none;
+
+}
+
+.imgArea{
+    position: relative;
+}
+.notebookImg{
+    width: 40%;
+    margin: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(34, 51, 51, 0.29);
+    cursor: pointer;
+}
+.notebookName{
+    width: 40%;
+    margin: 10px;
+    /*margin: 10px;*/
+    position: absolute;
+    bottom: 20px;
+
+
+
+}
+
+.myNotebook .notebookName p{
+    width: 100%;
+    color: #f0ffde;
+    text-align: center;
+    /*margin:  0 10px;*/
+    padding: 1% 0;
+    /*margin: 0 10px 0 0;*/
+    margin:0 ;
+    font-size: 14px;
+    background-color: rgba(34, 51, 51, 0.29);
+}
+
+
+.myNotebook .notebooks{
+    margin-top: 10px;
+}
+
+.line{
+    height: 15px;
+    background-color: #efefef;
+    /*border-bottom: 2px solid rgba(34, 51, 51, 0.47);*/
+    /*box-shadow:  0 3px 10px rgba(34, 51, 51, 0.44);*/
+    margin-bottom: 2px;
+}
+.myNotebook .editArea{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10%;
+    font-weight: bold;
+
+
+    padding: 1%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.myNotebook .editArea span{
+    text-align: center;
+    display: inline-block;
+    /*display: inline-block;*/
+    /*margin: 4px;*/
+    background-color: rgba(166, 184, 233, 0.38);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow:  0 3px 3px #a6b8e9;
+    width: 80%;
+    color: #000;
+    padding: 4% 0%;
+    margin: 10% 0;
+
+    font-size: 24px;
+    cursor: pointer;
+
+}
+
+.myNotebook .editArea span:hover{
+    background-color: rgba(166, 184, 233, 0.55);
+}
+.myNotebook .addBtn:hover, .myNotebook .planBtn:hover{
+    background-color: #60d1ff;
+
+}
+.addNotebook{
+    background-color: #5CB8FF;
+    cursor: pointer;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 70px;
+}
+
+.addNotebook:hover{
+    background-color: #60d1ff;
+}
+
+.addNotebook p{
+    line-height: 220%;
+    margin: 0;
+    font-weight: bold;
+    color: #e2fff6;
+}
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    .myNotebook .row  p,p,.myNotebook .notebookName p{
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .topTab  p{
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    .myNotebook .row  p,p,.myNotebook .notebookName p{
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .topTab  p{
+        font-size: 24px;
+        line-height: 40px;
+    }
+}

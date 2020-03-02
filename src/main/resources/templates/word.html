@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding-left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h2>hello</h2>
+    <form action="/word" method="post">
+        请输入您查找的单词：<input type="text" name="wordname" value="${word}">
+        <button type="submit">提交</button>
+    </form>
+
+    <p>单词：${word}</p>
+    <p>单词释义：${translation}</p>
+
+    <table>
+        <#if list?exists>
+        <#list list as word>
+
+        <tr>
+            <td>
+                <#if word.word?exists>
+                <a href="/word?wordname=${word.word}">${word.word}</a></#if>
+            </td>
+
+            <td>
+                <#if word.translation?exists>
+                ${word.translation}</#if>
+            </td>
+        </tr>
+
+        </#list>
+        </#if>
+</table>
+</body>
+</html>

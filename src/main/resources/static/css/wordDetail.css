@@ -1,0 +1,162 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+
+
+.back{
+    display: inline-block;
+    width: 10%;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 2%;
+}
+
+.back img:hover{
+    background-color: #515151;
+}
+
+#wordInput{
+    width: 65%;
+    height: 40px;
+    padding-left: 5px;
+    margin-left: 2%;
+    background: url("../../static/img/search.png") no-repeat right 10px bottom 7px;
+    background-size: 25px 25px;
+    outline: none;
+    border: 1px solid transparent;
+    font-size: 20px;
+    border-bottom: 1px solid #515151;
+
+
+}
+#wordInput:focus{
+    -webkit-transition:border linear .1s,-webkit-box-shadow linear .2s;
+    border-color: rgba(97, 142, 124, 0.75);
+    -webkit-box-shadow:0 0 18px rgb(27, 133, 87);
+    /*border: 1px solid #2ECC40;*/
+}
+
+
+#searchBtn{
+    width: 40px;
+    height: 36px;
+    margin-left: 5px;
+    outline: none;
+    border:0;
+    border-radius: 25%;
+    background-color: #d3dad4;
+    box-shadow: 2px 2px 2px #000000;
+}
+
+.searchView{
+    padding-top: 10px;
+}
+
+
+.wordDetail{
+    
+    font-size: 18px;
+}
+
+.word_some{
+    padding: 0 0 5px;
+    font-family: "KaiTi";
+    font-weight: bold;
+}
+
+.word_name{
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.word_some .classification{
+    font-size: 16px;
+    color: #bfbfbf;
+
+}
+.word_some .classification p{
+    font-weight: normal;
+    font-style: italic;
+}
+
+.collect{
+
+    font-weight: bold;
+    color: #e5343b;
+    cursor: pointer;
+}
+
+.meaning{
+    margin: 0 3px;
+    padding: 5px 0 ;
+    font-family: "KaiTi";
+    font-weight: bold;
+}
+
+.sentences{
+
+    margin: 0 3px;
+    font-size: 18px;
+    padding: 5px 0 ;
+    font-family: "KaiTi";
+    font-weight: bold;
+}
+
+.sentence{
+    margin-bottom: 10px;
+}
+
+.sentence .sentence_cn{
+    padding-top: 5px;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.sound{
+    display: none;
+}
+
+.glyphicon-volume-down{
+    cursor: pointer;
+}
+
+.glyphicon-volume-down:hover{
+    color: #527db0;
+}
+
+.myNotebook{
+    position: absolute;
+    padding: 4px;
+    width: 200px;
+    height: 200px;
+    /*max-height: 200px;*/
+    /*overflow-y: scroll;*/
+    right: 20%;
+    top:20px;
+    /*border: 1px solid #000;*/
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px #000000;
+    border-radius: 5px;
+    display: none;
+    z-index: 99;
+
+}
+.myNotebook p{
+    cursor: pointer;
+    text-align: center;
+    padding: 2px;
+    margin: 0;
+
+}
+
+.myNotebook p:nth-child(odd){
+        background-color: rgba(218, 218, 218, 0.08);
+}
+
+.myNotebook p:hover{
+    background-color: rgba(239, 239, 239, 0.37);
+}

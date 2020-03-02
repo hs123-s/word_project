@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../../static/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/login.css">
+
+</head>
+<body style="background-color: #dadada;margin-top: 20px;">
+
+<div class="container loginArea" >
+    <div class="row loginBox" style="padding-top: 20px;">
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3"
+             style="display:flex;justify-content: center;">
+            <img src="../../static/img/logo/logo200.png" alt="">
+        </div>
+
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3"
+             style="display:flex;justify-content: center;">
+            <h2>登 录</h2>
+        </div>
+
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <div class="row ">
+                <!--                    <div class="col-xs-2" style="padding: 0;"><img src="../../static/img/learner/user.png" alt="" style="width: 30px;"></div>-->
+                <div class="col-xs-10 col-xs-offset-1 emailBox" style="padding: 0;" >
+                    <input type="text" placeholder="email" id="email">
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 emailMsgBox" style="padding: 0;">
+                    <span class="emailMsg">邮箱错误提示区</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <div class="row">
+                <!--                    <div class="col-xs-2" style="padding: 0;"><img src="../../static/img/learner/user.png" alt="" style="width: 30px;"></div>-->
+                <div class="col-xs-10 col-xs-offset-1" style="padding: 0;">
+                    <input type="password" id="password" placeholder="password">
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 passwordMsgBox" style="padding: 0;">
+                    <span class="passwordMsg">密码错误提示区</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <div class="row">
+                <!--                    <div class="col-xs-2" style="padding: 0;"><img src="../../static/img/learner/user.png" alt="" style="width: 30px;"></div>-->
+                <div class="col-xs-10 col-xs-offset-1" style="padding: 0;">
+                    <img src="../../static/img/learner/rememberBox.png" alt="" style="width: 18px;" class="rememberBox"> 记住密码
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <div class="row">
+                <!--                    <div class="col-xs-2" style="padding: 0;"><img src="../../static/img/learner/user.png" alt="" style="width: 30px;"></div>-->
+                <div class="col-xs-4 col-xs-offset-2" style="padding:20px 0;">
+                    <a href="/learner/gotoRegister">去注册</a>
+                </div>
+                <div class="col-xs-4 " style="padding: 20px 0;text-align:right;">
+                    <a href="/learner/gotoFindPsw">忘记密码</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <div class="row" style="margin: 20px auto;">
+                <!--                    <div class="col-xs-2" style="padding: 0;"><img src="../../static/img/learner/user.png" alt="" style="width: 30px;"></div>-->
+                <div class="col-xs-8 col-xs-offset-2 loginBtn" onclick="submit();">
+                    登 录
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  <form action="/learner/login" onsubmit="return false" style="padding-left: 300px">-->
+<!--      账号：<input type="text" placeholder="填写邮箱" name="email" id="email">-->
+<!--      <span class="emailMsg"></span><br>-->
+<!--      密码：<input type="password" placeholder="填写密码" name="password" id="password">-->
+<!--      <span class="passwordMsg"></span><br>-->
+
+<!--  </form>-->
+<!--  <button onclick="submit()" id="submit" disabled>提交</button>-->
+<!--  <span id="msg"></span>-->
+<!--  <div id="btn"></div>-->
+<!--  <a href="../learner/register.html">去注册</a>-->
+</body>
+
+</html>
+
+<script src="../../static/jq/jquery.min.js"></script>
+
+<script>
+
+    let isRememberCount = false;
+
+    $(".rememberBox").click(function () {
+
+        if(!isRememberCount){
+
+            $(this).fadeOut(200);
+            $(this).attr('src','../../static/img/learner/right.png');
+            $(this).fadeIn(200);
+            isRememberCount = true;
+        }else {
+            $(this).fadeOut(200);
+            $(this).attr('src','../../static/img/learner/rememberBox.png');
+            $(this).fadeIn(200);
+            isRememberCount = false;
+        }
+
+    });
+
+
+    //先在前端检测，再向后端取数据
+    var emailReg = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;    //邮箱正确格式
+    var passwordReg = /^[A-Za-z0-9]{6,40}$/; //六位到四十位数字或字母组成的字符
+    var emailFlag = false;
+    var passwordFlag = false;
+
+    $("#email").bind("input propertychange change",function () {
+        if($("#email").val() == ""){
+            emailFlag = false;
+            $(".emailMsg").text("邮箱不能为空！");
+        }else if(!(emailReg.test($("#email").val()))){
+            emailFlag = false;
+            $(".emailMsg").text("格式不对！")
+        } else{
+            emailFlag = true;
+            $(".emailMsg").text("ok！")
+            check();
+        }
+    });
+
+    // 检测密码格式
+    $("#password").bind("input propertychange change",function (e) {
+        if(!passwordReg.test($("#password").val())){
+            passwordFlag = false;
+            $(".passwordMsg").text("密码格式不正确！请输入6-40位字母或数字组成的密码！")
+        }else {
+            passwordFlag = true;
+            $(".passwordMsg").text("密码格式正确!")
+            check();
+        }
+    });
+
+    function check() {
+        if((emailReg.test($("#email").val()))){
+            emailFlag = true;
+        }
+        if(emailFlag && passwordFlag){
+            $("#submit").attr("disabled",false)
+        }else {
+            $("#submit").attr("disabled",true)
+        }
+    }
+
+
+    function submit() {
+        if(emailFlag && passwordFlag){
+            var data = {email:$("#email").val(),password:$("#password").val()}
+            data = JSON.stringify(data);
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                url: "/learner/login",
+                data:data,         //发送给数据库的数据
+                dataType: "json", //json类型
+                success: function(result) {
+                    if(result.code == 200){
+                        window.location.href = "/"
+                    }else if(result.code == 404){
+                        //用户封禁中
+                        $(".emailMsg").text("用户封禁中")
+                    }else if(result.code == 405){
+                        //用户未审核
+                        $(".emailMsg").text("用户未审核");
+                        $("#btn").html('<button onclick="sentEmailAgain()">用户未审核,点击重新发送邮箱</button>')
+                    }else if(result.code == 406){
+                        //没有该用户
+                        $(".emailMsg").text("邮箱或密码错误！")
+                    }
+
+                },
+                error: function(errmsg) {
+                    console.log("Ajax获取服务器数据出错了！"+ errmsg);
+                }
+
+            })
+        }else {
+            $("#msg").text("邮箱或密码格式错误！")
+        }
+    }
+
+    function sentEmailAgain() {
+        if(emailReg.test($("#email").val())) {
+
+            var data = {email: $("#email").val()}
+            data = JSON.stringify(data);
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                url: "/learner/login/sentEmailAgain",
+                data: data,         //发送给数据库的数据
+                dataType: "json", //json类型
+                success: function (result) {
+                    if(result.code === 200){
+                        $("#msg").text("邮箱发送成功！请在邮件里激活！")
+                    }else{
+                        $("#msg").text(result.msg);
+                    }
+                },
+                error: function (errmsg) {
+                    console.log("Ajax获取服务器数据出错了！" + errmsg);
+                }
+            })
+
+        }else{
+            $("#msg").text("请在邮箱框里填写正确的邮箱！")
+        }
+
+    }
+
+</script>

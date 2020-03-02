@@ -1,0 +1,110 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    height: 50px;
+    padding: 5px 15px 5px 15px;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+}
+.topTab .row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+.topTab span{
+    width: 80%;
+}
+.topTab .back{
+
+}
+.topTab {
+    text-align: center;
+}
+.topTab  p{
+    font-size: 18px;
+    margin: 0;
+    /*padding: 0 0 0 15px;*/
+    padding: 0;
+    cursor: pointer;
+
+}
+.topTab  p:hover{
+    background-color: rgba(60, 60, 60, 0.51);
+}
+
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: #f7f7f7;
+
+}
+
+
+.wordDetailBox{
+    background-color: rgba(216, 228, 231, 0.56);
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 2px 15px rgba(35, 51, 51, 0.58);
+    margin-bottom: 20px;
+
+}
+
+.wordDetailBox p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.wordDetailBox #wordTypes {
+    font-style: italic;
+}
+
+.glyphicon-volume-down{
+    padding: 0;
+    cursor: pointer;
+}
+
+.sentences .sentence{
+    margin-bottom: 8px;
+}
+
+.sentences .sentence p{
+    font-size: 14px;
+
+    line-height: 20px;
+
+}
+
+.sentences .sentence_cn p{
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(35, 51, 51, 0.66);
+}
+.wordPara{
+
+}
+
+.glyphicon-volume-down:hover,.glyphicon-volume-down:hover{
+    color: #1b6d85;
+}
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+
+    .topTab  p{
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+
+    .topTab  p{
+        font-size: 24px;
+        line-height: 40px;
+    }
+}

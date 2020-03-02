@@ -1,0 +1,155 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #233;
+}
+.webpage{
+    width: 1170px;
+    height: 3000px;
+    background-color: #cce8cf;
+    margin: 0 auto;
+
+    border: 1px solid black;
+}
+.header{
+    width: 100%;
+    height: 60px;
+    /*background-color: #283389;*/
+}
+
+.logo{
+    width: 120px;
+    height: 100%;
+    background-color: #d99d3c;
+    float: left;
+
+}
+
+
+.login-register{
+    width: 220px;
+    height: 100%;
+    float: right;
+    text-align: center;
+    line-height: 60px;
+    font-size: 16px;
+    color: #000;
+}
+.login-register a{
+    text-decoration: none;
+    color: #000;
+}
+
+.login-register a:hover{
+    color: #223333;
+    font-size: 20px;
+}
+
+.login{
+    width: 48%;
+    height: 100%;
+    background-color: #ff587e;
+    float: left;
+}
+.register{
+    width: 48%;
+    height: 100%;
+    background-color: #8a25c5;
+    float: right;
+
+}
+
+.search{
+    width: 150px;
+    height: 100%;
+    background-color: #ffd1d2;
+    float: right;
+}
+
+.hot{
+    width: 100%;
+    height: 360px;
+    margin-top: 20px;
+    /*background-color: #1effa5;*/
+}
+
+.scroll{
+    width: 64%;
+    height: 100%;
+    margin: 0 2%;
+    float: left;
+    background-color: #114339;
+}
+
+.news{
+    width: 30%;
+    height: 100%;
+    margin-right: 2%;
+    float: right;
+}
+
+.news-up{
+    width: 100%;
+    height: 48%;
+    background-color: #ff587e;
+}
+
+.news-bottom{
+    width: 100%;
+    height: 48%;
+    margin-top: 4%;
+    background-color: #ff5a15;
+}
+
+.main{
+    width: 100%;
+}
+
+.article-list{
+    width: 72%;
+    margin: 2% 0 0 2%;
+    float: left;
+    /*background-color: #ff2eaa;*/
+}
+
+.article-list>.article{
+    width: 94%;
+    padding: 3%;
+    /*border-bottom: 2px solid #223333;*/
+    background-color: #ffc5a0;
+    margin-bottom: 20px;
+}
+
+.side-bar{
+    width: 24%;
+    float: right;
+    /*background-color: red;*/
+    margin-top: 20px;
+}
+
+.side-bar .hot-classification {
+    width: 92%;
+    height: 300px;
+    background-color: #ff634a;
+    margin: 0 8% 20px 0;
+}
+
+.side-bar .hot-article{
+    width: 92%;
+    height: 300px;
+    background-color: #ff634a;
+    margin: 0 8% 20px 0;
+}
+
+.side-bar .hot-section{
+    width: 92%;
+    height: 300px;
+    background-color: #ff634a;
+    margin: 0 8% 20px 0;
+}
+.sound{
+    width: 0px;
+    height: 0px;
+}

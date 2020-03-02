@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Class-Path: netty-transport-4.1.39.Final.jar mysql-connector-java-5.1.
+ 44.jar reactor-core-3.2.12.RELEASE.jar mybatis-spring-1.3.2.jar valid
+ ation-api-2.0.1.Final.jar spring-web-5.1.9.RELEASE.jar logback-classi
+ c-1.2.3.jar slf4j-api-1.7.28.jar spring-data-commons-2.1.10.RELEASE.j
+ ar classmate-1.4.0.jar jackson-annotations-2.9.0.jar activation-1.1.j
+ ar fastjson-1.2.8.jar snakeyaml-1.23.jar freemarker-2.3.29.jar netty-
+ codec-4.1.39.Final.jar netty-buffer-4.1.39.Final.jar spring-core-5.1.
+ 9.RELEASE.jar spring-boot-autoconfigure-2.1.8.RELEASE.jar spring-boot
+ -starter-data-redis-2.1.8.RELEASE.jar spring-jcl-5.1.9.RELEASE.jar sp
+ ring-boot-starter-tomcat-2.1.8.RELEASE.jar jackson-databind-2.9.9.3.j
+ ar jboss-logging-3.3.3.Final.jar javax.mail-1.6.2.jar spring-boot-sta
+ rter-jdbc-2.1.8.RELEASE.jar commons-pool2-2.6.2.jar spring-boot-start
+ er-mail-2.1.4.RELEASE.jar xml-apis-1.4.01.jar tomcat-embed-websocket-
+ 9.0.24.jar spring-beans-5.1.9.RELEASE.jar spring-context-support-5.1.
+ 9.RELEASE.jar hibernate-validator-6.0.17.Final.jar json-20190722.jar 
+ spring-boot-starter-json-2.1.8.RELEASE.jar spring-tx-5.1.9.RELEASE.ja
+ r tomcat-embed-el-9.0.24.jar spring-boot-starter-logging-2.1.8.RELEAS
+ E.jar netty-resolver-4.1.39.Final.jar reactive-streams-1.0.3.jar dom4
+ j-1.6.1.jar spring-boot-starter-freemarker-2.1.8.RELEASE.jar spring-d
+ ata-redis-2.1.10.RELEASE.jar log4j-to-slf4j-2.11.2.jar netty-handler-
+ 4.1.39.Final.jar spring-webmvc-5.1.9.RELEASE.jar jul-to-slf4j-1.7.28.
+ jar spring-boot-2.1.8.RELEASE.jar mybatis-3.4.6.jar jackson-datatype-
+ jdk8-2.9.9.jar spring-expression-5.1.9.RELEASE.jar HikariCP-3.2.0.jar
+  tomcat-embed-core-9.0.24.jar spring-boot-starter-web-2.1.8.RELEASE.j
+ ar jackson-core-2.9.9.jar spring-context-5.1.9.RELEASE.jar spring-boo
+ t-starter-2.1.8.RELEASE.jar lettuce-core-5.1.8.RELEASE.jar jackson-da
+ tatype-jsr310-2.9.9.jar jackson-module-parameter-names-2.9.9.jar log4
+ j-api-2.11.2.jar javax.annotation-api-1.3.2.jar spring-oxm-5.1.9.RELE
+ ASE.jar spring-jdbc-5.1.9.RELEASE.jar netty-common-4.1.39.Final.jar l
+ ogback-core-1.2.3.jar mybatis-spring-boot-autoconfigure-1.3.2.jar myb
+ atis-spring-boot-starter-1.3.2.jar spring-data-keyvalue-2.1.10.RELEAS
+ E.jar spring-aop-5.1.9.RELEASE.jar
+Main-Class: com.ahuiali.word.WordApplication
+

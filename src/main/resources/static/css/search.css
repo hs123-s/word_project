@@ -1,0 +1,67 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body,html{
+    background-color: #dadada;
+}
+
+.back{
+    display: inline-block;
+    width: 10%;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 2%;
+}
+
+.back img:hover{
+    background-color: #515151;
+}
+
+#wordInput{
+    width: 65%;
+    height: 40px;
+    padding-left: 5px;
+    margin-left: 2%;
+    background: none;
+    outline: none;
+    border: 1px solid transparent;
+    font-size: 20px;
+    border-bottom: 1px solid #515151;
+
+}
+#wordInput:focus{
+    -webkit-transition:border linear .1s,-webkit-box-shadow linear .2s;
+    border-color: rgba(97, 142, 124, 0.75);
+    -webkit-box-shadow:0 0 18px rgb(27, 133, 87);
+    /*border: 1px solid #2ECC40;*/
+}
+
+
+#searchBtn{
+    width: 40px;
+    height: 36px;
+    margin-left: 5px;
+    outline: none;
+    border:0;
+    border-radius: 25%;
+    background-color: #d3dad4;
+    box-shadow: 2px 2px 2px #000000;
+}
+
+.searchView{
+    padding-top: 10px;
+}
+
+.tips div{
+    padding-left: 15%;
+    height: 30px;
+    line-height: 30px;
+    width: 80%;
+    font-size: 20px;
+
+}
+.tips div p{
+    margin: 0;
+    border-bottom: 1px solid #515151;
+}

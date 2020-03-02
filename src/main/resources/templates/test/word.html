@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单词</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../../static/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/word.css">
+</head>
+<body >
+    <div class="word container w1">
+        <div style="width: 100%;height: 10px;"></div>
+        <!--返回-->
+        <div class="row word_return">
+            <div class="col-md-3 col-xs-3"><span class="glyphicon glyphicon-menu-left" id="return" style="font-size: 28px" onclick="returnIndex();"></span></div>
+            <div class="col-md-6 col-xs-6" style="text-align: center;font-size: 18px;font-family: 'KaiTi';font-weight: bold">单词背诵</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-6" style="border-right: 1px solid #bfbfbf;">
+                <p class="text-right" style="margin: 0;font-size: 12px">待复习 8</p>
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <p class="text-left" style="margin: 0;font-size: 12px">待学单词 15</p>
+            </div>
+        </div>
+        <div style="width: 100%;border: 1px solid #e6e6e6;margin-top: 5px;"></div>
+        <!--单词以及发音-->
+        <div class="row wordAndPron" style="margin-top: 40px;">
+            <p class="text-center" style="font-size: 24px" id="word">coding</p>
+            <p class="text-center">英 [<span id="pron_uk">'kəʊdɪŋ</span>] <span class="glyphicon glyphicon-volume-down"></span></p>
+            <p class="text-center">美 [<span id="pron_us">'koʊdɪŋ</span>] <span class="glyphicon glyphicon-volume-down"></span></p>
+        </div>
+        <!--显示释义区-->
+        <div class="row word_meaning">
+            <div class="col-md-offset-5 col-md-2" id="meanBtn" style="text-align: center;line-height: 200px;" onclick="showMean();">
+                <span>显示释义</span>
+            </div>
+
+            <div class="meaningArea">
+                <div class="center-block" style="text-align: center;padding-top: 90px;" id="meaning">
+                    n. 编码；译成电码<br>v. “code”的现在分词
+                </div>
+            </div>
+        </div>
+
+            <div class="row hidden-xs">
+                <div  class="setOK col-md-offset-4 col-sm-offset-4 col-sm-4 col-md-4" style="text-align: center">
+                    <span class="glyphicon glyphicon-ok-sign master"></span> 已掌握
+                </div>
+            </div>
+            <div  class="row hidden-xs nextWord">
+                <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4" style="text-align: center">
+                    <span class="glyphicon glyphicon-arrow-right next_word"></span> 下一个
+                </div>
+            </div>
+            <div  class="row hidden-xs wordDetail">
+                <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4" style="text-align: center">
+                    <span class="glyphicon glyphicon-question-sign detail_word"></span> 详 细
+                </div>
+            </div>
+
+        <!--底部按钮-->
+        <div class="row word_bottom footer navbar-fixed-bottom">
+            <div class="col-xs-4 visible-xs setOK" ><span class="glyphicon glyphicon-ok-sign"></span> 已掌握</div>
+            <div class="col-xs-4 visible-xs nextWord"><span class="glyphicon glyphicon-arrow-right"></span> 下一个</div>
+            <div class="col-xs-4 visible-xs wordDetail"><span class="glyphicon glyphicon-question-sign"></span> 详 细</div>
+        </div>
+
+    </div>
+</body>
+<script src="../../static/jq/jquery.min.js"></script>
+<script src="../../static/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+<script>
+    //显示释义
+    function showMean() {
+        $("#meanBtn").hide();
+        $(".meaningArea").fadeIn();
+    }
+
+    // 返回上一个界面
+    function returnIndex() {
+       window.history.back(-1);
+    }
+
+    //word对象
+
+    //用words保存复习和新词
+    let reviewWords = new Array();
+    //新词数组
+    let newWords = new Array();
+    //reviewWorded保存复习过的
+    let reviewWorded = new Array();
+    //newWorded保存新词学习过的
+    let newWorded = new Array();
+    let reviewCount = 0;
+
+    $(function () {
+
+        //init
+
+        //页面传参，传复习总数，接收
+        //模拟
+        reviewCount = 200;
+
+
+        /**
+         * if(reviewCount > 0)
+         请求返回复习数组
+         如果成功，返回单词数组，reviewWords接收，curr++，reviewCount-=reviewWords.length
+         显示数组第一个单词
+         */
+
+        /**
+         * if(reviewCount > 0)
+         * 如果为空，重新请求，返回新词，15一组
+         */
+
+
+    })
+
+    //复习
+    //
+    /**
+     * 下一个，将数组头部元素弹出，判断是否为空，不为空则读取下一个，为空则继续发请求
+     * 将弹出的单词加入worded数组，格式为id，
+     */
+
+    //详情
+
+</script>
+</html>

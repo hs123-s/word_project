@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书架</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bookshelf.css">
+    <!--    底部样式-->
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body  style="background-color: #efefef;">
+
+<div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1 " style="cursor: pointer">
+            <p><span class="glyphicon glyphicon-menu-left"></span></p>
+        </div>
+        <div class="col-xs-8 col-md-8" style="position:relative;display:flex;justify-content: center;">
+            <div style="padding-left: 15px;position:relative;">
+                <p style="font-weight: 700;">书架 </p>
+                <div class="tabBlock" style="position:absolute;width: 15px;height: 4px;background-color:#233333;bottom: 2px;right: 8px;"></div>
+            </div>
+            <div>&nbsp;|&nbsp;</div>
+            <div>
+                <a href="/book/gotoBookStore"><p> 书城</p></a>
+            </div>
+            <!--            <p style="display: inline-block;position:relative;"><span></span> | <span></span></p>-->
+
+        </div>
+        <div class="gotoBookDetail col-xs-2 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+    </div>
+</div>
+<div style="height: 60px;"></div>
+
+    <div class="container">
+        <!--    分类区-->
+        <div class="row myBooks" style="">
+<!--            <div class="book" id="书籍的id">-->
+<!--                <a href=""><img src="/img/book/a_christmas_carol.jpg" ></a>-->
+<!--                <div class="bookNameBox">-->
+<!--                    <p class="bookName">圣诞欢歌</p>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+
+<!--底部-->
+<div style="height: 70px;"></div>
+<!--    移动端显示此底部栏-->
+<footer class="footer navbar-fixed-bottom  visible-xs-block"
+        style="padding: 5px 0 0 0;">
+
+    <div class="bottomFuns" style="display: flex;justify-content:space-between;flex-grow: inherit;margin: 0;">
+
+        <div class="bottomFun">
+            <a href="/wordbook/gotoWordbook">
+                <p class="text-center font-18"><img src="/img/wordbook.png" style="height: 30px;" alt=""></p>
+                <p class="text-center font-14">词库</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/notebook/gotoNotebook">
+                <p class="text-center font-18"><img src="/img/notebook.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">生词</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/">
+                <p class="text-center font-18"><img src="/img/index.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">首页</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="#">
+                <p class="text-center font-18"><img src="/img/novelClicked.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">小说</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/learner/profile">
+                <p class="text-center font-18"><img src="/img/mine.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">我的</p>
+            </a>
+        </div>
+    </div>
+
+</footer></body>
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+<script>
+
+    //返回
+    $(".back").click(function () {
+        //回退
+        window.location.href = "/";
+    });
+
+    $(function () {
+
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/book/mybook",
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result);
+                if(result.code === 200){
+                    $.each(result.books,function (i,item) {
+                        let a;
+
+                        if( item.lastest_loc != "" && item.lastest_loc != null && item.lastest_loc.length != 0){
+
+                            a = "/book/gotoRead?last_loc="+item.lastest_loc+"&from=shelf";
+                        }else{
+                            a = "/book/gotoRead?chapter_index="+(item.index_book*10000+1)+"&from=shelf";
+                        }
+
+                        // $("#mybook").append("<a href='"+ a +"'>"+item.title+"</a><br>")
+                        $(".myBooks").append("<div class=\"book\" >\n" +
+                            "                <a href=\"" + a + "\"><img src=\""+ item.img+"\" ></a>\n" +
+                            "                <div class=\"bookNameBox\">\n" +
+                            "                    <p class=\"bookName\">"+ item.title+"</p>\n" +
+                            "                </div>\n" +
+                            "            </div>")
+                    })
+                }
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+            }
+        })
+    });
+
+</script>

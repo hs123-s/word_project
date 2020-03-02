@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生词本详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/notebookDetail.css">
+
+</head>
+<body>
+
+
+    <div id="topTab" class="topTab container">
+        <div class="row">
+            <div class="back col-xs-2 col-md-1 col-md-offset-1 " style="cursor: pointer">
+                <p><span class="glyphicon glyphicon-menu-left"></span></p>
+            </div>
+            <div class=" col-xs-8 col-md-8" style="position:relative;display:flex;justify-content: center;">
+
+                <div style="padding-left: 15px;"><p class="notebookName">生词本</p></div>
+
+                <!--            <p style="display: inline-block;position:relative;"><span></span> | <span></span></p>-->
+
+            </div>
+            <div class="gotoBookDetail col-xs-2 " style="cursor: pointer">
+                <span class="glyphicon glyphicon-option-vertical"></span></div>
+        </div>
+    </div>
+    <div style="height: 60px;"></div>
+
+
+
+    <div id="words" class="container">
+        <audio id="sound" class="sound"  style="display:none;" src=""></audio>
+<!--        <div class="row">-->
+<!--            <div class="col-xs-10">-->
+<!--                <p class="word" content="demo">coding</p>-->
+<!--                &lt;!&ndash;            将换行去除&ndash;&gt;-->
+<!--                <p class="wordMean">n. 编码；译成电码  v. “code”的现在分词</p>-->
+<!--            </div>-->
+<!--            <div class="col-xs-1"><span content="demo" class="glyphicon glyphicon-volume-down pron"></span></div>-->
+<!--            <div class="col-xs-1"><span content="demo" class="glyphicon glyphicon-remove-circle"></span></div>-->
+<!--        </div>-->
+
+
+
+
+
+    </div>
+
+    <div class="container bottomBox" >
+        <div class="editBtn"><span class="glyphicon glyphicon-trash edit"></span></div>
+        <div class="learnBtn" style="width: 70%"><p style="text-align:center;">立即复习</p></div>
+    </div>
+
+</body>
+
+</html>
+
+<script src="/jq/jquery.min.js"></script>
+
+
+<script>
+    $(".back").click(function () {
+        window.history.back(-1);
+    });
+
+    init();
+
+    function init(){
+        //点击发音
+        $(".pron").on('click',this,function () {
+            let word = $(this).attr("content");
+            let src = "http://media.shanbay.com/audio/us/"+word+".mp3";
+            $("#sound").attr("src",src);
+            $("#sound")[0].play();}
+        );
+
+        //点击删除单词
+        $(".glyphicon-remove-circle").on('click',this,function () {
+            // $(this).parent().removeChild(this);
+            this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)
+        });
+
+
+    }
+
+
+
+</script>
+<script>
+    var curr = 1;
+    var notebookId = getQueryVariable("id");
+    $(function () {
+
+        var data = {curr:curr,size:30};
+        data = JSON.stringify(data);
+
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            data: data,
+            contentType: "application/json;charset=UTF-8",
+            url: "/notebook/listWords/"+notebookId,
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result);
+                if(result.code === 200){
+                    curr++;
+                    console.log(curr);
+                    $.each(result.words,function (i,item) {
+                        // $("#words").append("<a href='/wordect/gotoWordDetail/"+ item.word+"'>"+item.word+"</a><br>")
+                        $("#words").append("<div class=\"row\">\n" +
+                            "            <div class=\"col-xs-10\">\n" +
+                            "                <a href=\"/wordect/gotoWordDetail/"+ item.word +"\"><p class=\"word\" content=\""+ item.word +"\">"+ item.word +"</p></a>\n" +
+                            "                <!--            将换行去除-->\n" +
+                            "                <p class=\"wordMean\">"+ item.paraphrase +"</p>\n" +
+                            "            </div>\n" +
+                            "            <div class=\"col-xs-1\"><span content=\""+ item.word +"\" class=\"glyphicon glyphicon-volume-down pron\"></span></div>\n" +
+                            "            <div class=\"col-xs-1\"><span content=\""+ item.word +"\" class=\"glyphicon glyphicon-remove-circle\"></span></div>\n" +
+                            "\n" +
+                            "        </div>")
+
+                    });
+                    init();
+                    //点击编辑
+                    $(".editBtn").click(function () {
+                        $(".glyphicon-remove-circle").toggle(400);
+                        $(".edit").toggleClass('active');
+                    });
+                }
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+
+            }
+        })
+
+
+    })
+
+    $("#showMore").click(function () {
+        var data = {curr:curr,size:30};
+        data = JSON.stringify(data);
+
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            data: data,
+            contentType: "application/json;charset=UTF-8",
+            url: "/notebook/listWords/"+notebookId,
+            dataType: "json", //json类型
+            success: function (result) {
+                if(result.code === 200){
+                    console.log(result);
+                    $.each(result.words,function (i,item) {
+
+                        $("#words").append("<a href='/notebook/'>"+item.word+"</a><br>")
+                        curr++;
+
+                    })
+                }
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+
+            }
+        })
+    });
+
+    //获取页面参数
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+</script>

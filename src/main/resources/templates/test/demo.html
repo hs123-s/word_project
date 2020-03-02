@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE> New Document </TITLE>
+    <META NAME="Generator" CONTENT="EditPlus">
+    <META NAME="Author" CONTENT="">
+    <META NAME="Keywords" CONTENT="">
+    <META NAME="Description" CONTENT="">
+    <meta charset="UTF-8">
+    <style>
+        p{
+            font-family: "Sans-serif";
+            font-size: 17px;
+        }
+    </style>
+    <script src="../jq/jquery.min.js"></script>
+</HEAD>
+
+<BODY>
+<script>
+    var wordList = []; //待背单词数组
+    var review = []; //复习数组
+    var word_memorize_1 = []; // 第一个记忆周期，五分钟
+    var word_memorize_2 = []; // 第二个记忆周期，三十分钟
+    var word_memorize_3 = []; // 第三个记忆周期，12小时
+    var word_memorize_4up = []; // 第四个记忆周期以后，一天以后，因为时间间隔长，所以不再设置队列，只接收后台的数据
+
+    //从json中读取全部数据，将其封装
+    var alldata = null;
+
+    //异步获取json数据
+    $.ajax({
+        url:"text.json",
+        async:false,
+        success:function (data) {
+            alldata = data;
+            test();
+        },
+        error:function () {
+            alert("error!")
+        }
+    });
+
+    //获取释义
+    function getMean(wordRank) {
+        var content = alldata[wordRank].content.word.content;
+        var synos;
+        var synoStr = "";
+        var indexMean = 0;
+        //因为有些json单词释义是syno，有些则是trans
+        if(content.syno){
+            synos = content.syno.synos; //释义
+            for(var mean in synos){
+                synoStr += (synos[indexMean].pos + ". " + synos[indexMean].tran + "</br>");
+                indexMean++;
+            }
+        }else {
+            var indexTrans = 0;
+            var transStr = "";
+            var trans = content.trans;
+            for(var tran in trans){
+                transStr += (trans[indexTrans].pos + ". " + trans[indexTrans].tranCn + "</br>");
+            }
+        }
+        var str = "";
+        if("" == synoStr){
+            str = transStr;
+        }else {
+            str = synoStr;
+        }
+
+        return str;
+    }
+
+    //获取句子
+    function getSentences(wordRank){
+        var content = alldata[wordRank].content.word.content;
+        var senStr = "";
+        // 判断sentence是否存在
+        if(content.sentence){
+            var sentences = content.sentence.sentences;  //句子集合
+            for(var i = 0; i < sentences.length; i++){
+                senStr += "</br>" +sentences[i].sContent + "</br>" + sentences[i].sCn + "</br>";
+            }
+        }
+        return senStr;
+    }
+
+    //通过数组从json中获取单词
+    function getWordsByArray(wordsId) {
+        //遍历text.json
+        for(var i = 0; i < wordsId.length; i++){
+
+            var content = alldata[wordsId[i]].content.word.content;
+            wordList.push({
+                word : alldata[wordsId[i]].headWord,
+                mean : getMean(wordsId[i]),
+                ukphone : content.ukphone,
+                usphone : content.usphone,
+                sentence : getSentences(wordsId[i]),
+                memorize_count : 0,
+                createTime : new Date(),
+                time:''
+            });
+
+        }
+    }
+
+    //获取下一个单词
+    function getNextWord() {
+
+        var str = '背词完成！休息一下吧！😊';
+        var sentences = ""; //句子
+        if(wordList.length > 0 && (review.length == 0)){
+
+            var newWord = wordList[0];
+            sentences = newWord.sentence;
+            wordList[0].memorize_count++;
+            wordList[0].time = new Date();
+            // console.log(newWord); //get the first element of word
+            word_memorize_1.push(newWord); //add the new element to the first position of Array word_memorize_1
+            str = newWord.word
+                + "&nbsp;&nbsp;[英]:\/" + newWord.ukphone
+                + "\/&nbsp;&nbsp;&nbsp;[美]:\/" + newWord.usphone
+                + "\/</br>" + newWord.mean
+                + "</br>新词";
+            wordList.shift(); // remove the first element of Array word;
+        } else if(review.length > 0){
+            var review_word = review[0]; //取出review首元素
+            sentences = review_word.sentence;
+            var count = Number(review_word.memorize_count); //用count保存转换后的记忆次数
+            str = review_word.word
+                + "&nbsp;&nbsp;[英]:\/" + review_word.ukphone
+                + "\/&nbsp;&nbsp;&nbsp;[美]:\/" + review_word.usphone
+                + "\/</br>" + review_word.mean
+                + "<br/>已记忆次数：" + review_word.memorize_count
+                + "<br/>复习";
+
+            if(count == 1){
+                review_word.memorize_count++; //记忆次数加一
+                review_word.time = new Date(); //更新记忆时间
+                word_memorize_2.push(review_word); //将复习完的单词加入下一个待重复记忆队列中
+            }
+            if(count == 2){
+                review_word.memorize_count++; //记忆次数加一
+                review_word.time = new Date(); //更新记忆时间
+                word_memorize_3.push(review_word); //将复习完的单词加入下一个待重复记忆队列中
+            }
+            if(count == 3){
+                review_word.memorize_count++; //记忆次数加一
+                review_word.time = new Date(); //更新记忆时间
+                word_memorize_4up.push(review_word); //将复习完的单词加入下一个待重复记忆队列中
+            }
+            review.shift();
+        }
+        if(sentences == ""){
+            sentences = "该单词无例句，⑧好意思！";
+        }
+        $("#word").html(str);
+        $("#sentences > p").html(sentences);
+
+        //隐藏句子
+        $("#sentences").hide();
+        $("#showSe").html("显示例句");
+        console.log("word: " + wordList.length);
+        console.log("word_memorize_1: " + word_memorize_1.length);
+        console.log("review: " + review.length);
+        console.log("word_memorize_2: " + word_memorize_2.length);
+        console.log("word_memorize_3: " + word_memorize_3.length);
+        console.log("word_memorize_4up: " + word_memorize_4up.length);
+        console.log("------------------------------------------")
+
+    }
+
+    //该时钟用于检测是否应该复习
+    var clock1 = setInterval(function () {
+
+
+        if(word_memorize_1.length > 0
+            && calcInterval(word_memorize_1[0].time) > 7*1000){
+                review.push(word_memorize_1[0]);
+                word_memorize_1.shift();
+        }
+
+        if(word_memorize_2.length > 0
+                && calcInterval(word_memorize_2[0].time)  > 15*1000){
+            review.push(word_memorize_2[0]);
+            word_memorize_2.shift();
+        }
+
+        if(word_memorize_3.length > 0
+            && calcInterval(word_memorize_3[0].time)  > 20*1000){
+            review.push(word_memorize_3[0]);
+            word_memorize_3.shift();
+        }
+
+        if(word_memorize_4up.length > 0
+            && calcInterval(word_memorize_4up[0].time)  > 25*1000){
+            review.push(word_memorize_4up[0]);
+            word_memorize_4up.shift();
+        }
+    },100); //正式使用时，将此值改为3000，即三秒检测一次,现在为测试数据
+
+    /**
+     * 计算当前时间与传入时间的差值，用于判断是否加入复习队列
+     * @param MemorizeTime 单词最近记忆时间
+     * @returns {number} 返回差值
+     */
+    function calcInterval(MemorizeTime) {
+       var time =  MemorizeTime.getTime();
+       var currentTime = new Date().getTime();
+       return currentTime - time;
+    }
+
+
+    //
+
+    //测试
+    function test() {
+        var wordRank = [];
+        for(var i = 0; i < alldata.length; i++){
+            wordRank.push(i)
+        }
+
+        getWordsByArray(wordRank);
+    }
+</script>
+
+        <p id="word"></p>
+        <div id="btn" style="width: 120px;height: 40px;background-color: #cce8cf;
+        border-radius: 8px; cursor: pointer;text-align: center;line-height: 40px;box-shadow: 0px 5px 5px #919191; "
+            onclick="getNextWord();" onmouseover="btnMouseOver();" onmouseout="btnMouseOut();">下 一 个</div>
+
+        <div id="showSe" style="width: 120px;height: 40px;background-color: #cce8cf;
+        border-radius: 8px; cursor: pointer;text-align: center;line-height: 40px;
+        box-shadow: 0px 5px 5px #919191;margin-top: 30px"
+             onclick="showSentence();" onmouseover="showMouseOver();" onmouseout="showMouseOut();">显示例句</div>
+
+
+        <div id="sentences" style="background-color: #ffb4cc;margin-top: 50px;padding: 20px;display: none;">
+            <p></p>
+        </div>
+
+
+<script>
+
+    function showSentence() {
+        $("#sentences").toggle();
+        var name = $("#showSe").html() + "";
+        if(name == "显示例句"){
+            $("#showSe").html("隐藏例句");
+        }else {
+            $("#showSe").html("显示例句");
+        }
+
+    }
+
+    function showMouseOver() {
+        $("#showSe").css({"background":"#9bfffd"});
+    }
+
+    function showMouseOut() {
+        $("#showSe").css({"background":"#cce8cf"});
+    }
+
+    btnMouseOver = function () {
+        $("#btn").css({"background":"#9bfffd"});
+    };
+
+    btnMouseOut = function () {
+        $("#btn").css({"background":"#cce8cf"});
+    };
+</script>
+
+</BODY>
+</HTML>

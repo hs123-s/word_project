@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>词书详情页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/wordbookDetail.css">
+    <link rel="stylesheet" href="/css/toptab.css">
+
+</head>
+<body style="background-color: #dadada;">
+
+<div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1" style="cursor: pointer">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </div>
+        <div class=" col-xs-8 col-md-8"><p >词书详情</p></div>
+        <div class="gotoBookDetail col-xs-2  " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+    </div>
+</div>
+<!--    书籍信息区-->
+<div class="container myWordbookBox">
+    <div class="row myWordbook">
+        <div class="bookImg col-md-4 col-sm-4 col-lg-4 col-xs-4" id="书籍的id">
+            <img src="/img/wordbook/cet4core.jpg" >
+
+        </div>
+        <div class="wordbookInfo col-sm-8 col-md-8 col-lg-8 col-xs-8">
+
+            <p class="summary" style="">
+            </p>
+        </div>
+
+    </div>
+    <div class="col-xs-offset-8 addOrRemoveWordbook" content="add" style="margin-top: 10px;">
+        <span>加入计划 +</span>
+    </div>
+
+</div>
+<!--提示框，提示加入或移除书籍信息-->
+<div class="tipBox" >
+</div>
+<!--    阅读按钮-->
+<div class="container" style="display: flex;justify-content: center;">
+    <div class="showWordsBtn" onclick="showWords();" style="width: 70%"><p style="text-align:center;">显示单词</p></div>
+</div>
+
+<!--<button id="showWordsBtn" onclick="showWords();">显示单词</button>-->
+<div id="words" class="container" >
+    <audio id="sound" class="sound"  style="display:none;" src=""></audio>
+    <div class="row">
+
+
+    </div>
+</div>
+
+
+</body>
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+<script>
+
+
+    //点击发音
+    $(".pron").on('click',this,function () {
+        let word = $(this).attr("title");
+        let src = "http://media.shanbay.com/audio/us/"+word+".mp3";
+        $("#sound").attr("src",src);
+        $("#sound")[0].play();
+    })
+
+
+    $(".back").click(function () {
+        window.history.back(-1);
+    });
+
+    //词书id，接收页面的参数
+    let wordbookId;
+    wordbookId = getQueryVariable("id");
+
+    //加入计划/移除
+    $(".addOrRemoveWordbook").click(function () {
+        let a = $(".addOrRemoveWordbook").attr("content");
+        if("add" == a){
+            //添加该书籍
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                url: "/wordbook/addWordbook/"+wordbookId,
+                dataType: "json", //json类型
+                success: function (result) {
+                    if(result.code == 200){
+                        $('.addOrRemoveWordbook span').html("已加入");
+                        $(".addOrRemoveWordbook").attr("content","remove");
+                        $(".tipBox").html("已加入计划！");
+                        $(".tipBox").show();
+                        $(".tipBox").fadeOut(2000);
+                    }else {
+                        console.log(result)
+                    }
+
+
+
+                },
+                error: function (errmsg) {
+                    console.log("Ajax获取服务器数据出错了！" + errmsg);
+                }
+            })
+
+        }else if("remove" == a){
+            alert("暂时不允许删除词书计划")
+            //移除该书籍
+            // $.ajax({
+            //     type: "post",
+            //     async: true,     //异步执行
+            //     contentType: "application/json;charset=UTF-8",
+            //     url: "/wordbook/addWordbook/"+wordbookId,
+            //     dataType: "json", //json类型
+            //     success: function (result) {
+            //         if(result.code == 200){
+            //             $('.addOrRemoveWordbook span').html("加入计划");
+            //             $(".addOrRemoveWordbook").attr("content","add");
+            //             $(".tipBox").html("已移除词书！");
+            //             $(".tipBox").show();
+            //             $(".tipBox").fadeOut(2000);
+            //         }else {
+            //             console.log(result)
+            //         }
+            //
+            //
+            //
+            //     },
+            //     error: function (errmsg) {
+            //         console.log("Ajax获取服务器数据出错了！" + errmsg);
+            //     }
+            // })
+
+        }
+    });
+
+    $(function () {
+
+        //默认加载词书
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/detail/"+wordbookId,
+            dataType: "json", //json类型
+            success: function(result) {
+
+                console.log(result);
+                if(result.code == 200){
+                    // let img = "/img/wordbook/cet4core.jpg";
+                    let wb = result.wordbook;
+                    // wb.img = img;
+                    $(".bookImg img").attr('src',wb.img);
+                    $(".summary").html(wb.summary)
+                    if(wb.is_memorizing == 1){
+                        $('.addOrRemoveWordbook span').html("已加入");
+                        $(".addOrRemoveWordbook").attr("content","remove");
+                    }
+                }
+
+
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+
+        })
+
+    });
+
+    //获取页面参数
+    function getQueryVariable(variable)
+    {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+
+    //显示单词
+    let curr = 1;
+    function showWords() {
+        if(curr == 1){
+            $('#word').css("display",'block');
+            $('.showWordsBtn p').html("更 多");
+        }
+
+        let data = {curr:curr,size:30};
+
+        data = JSON.stringify(data);
+
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            data: data,
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/showWords/"+wordbookId,
+            dataType: "json", //json类型
+            success: function(result) {
+
+                if(result.code == 200){
+                    curr++;
+                    console.log(curr)
+                    console.log(result)
+                    let wordbook = result.wordbook;
+                    $.each(result.words,function (i,item) {
+                        // $("#words").append("<p>"+item.word+"</p>")
+                        $("#words .row").append("<div class=\"col-xs-10\">\n" +
+                            "            <p class=\"word\" title=\""+ item.word +"\">"+ item.word +"</p>\n" +
+                            "            <p class=\"wordList-pron\" >"+"美 ["+item.pron_us +"]   英 ["+ item.pron_uk +"]</p>\n" +
+                            "            <p class=\"wordMean\">"+ item.paraphrase +"</p>\n" +
+                            "        </div>\n" +
+                            "        <div class=\"col-xs-2\"><span title=\""+ item.word +"\" class=\"glyphicon glyphicon-volume-down pron\"></span></div>\n" +
+                            "        <div class=\"col-xs-12 word-line\"></div>")
+                    });
+
+
+
+                    // 重新绑定事件
+                    $(".pron").on('click',this,function () {
+                        let word = $(this).attr("title");
+                        let src = "http://media.shanbay.com/audio/us/"+word+".mp3";
+                        $("#sound").attr("src",src);
+                        $("#sound")[0].play();
+                    })
+                }
+
+
+
+
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+                $("#words").append("<p>"+item.word+"</p>")
+            }
+
+        })
+    }
+</script>

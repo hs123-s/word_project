@@ -1,0 +1,276 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "华文细黑";
+}
+
+a{
+    text-decoration: none;
+}
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    height: 50px;
+    padding: 5px 15px 5px 15px;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    box-shadow: 2px 2px 2px rgba(34, 51, 51, 0.53);
+}
+
+.topTab .row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+
+.topTab span{
+    width: 80%;
+}
+
+.topTab .back{
+
+}
+
+.topTab .chapterName{
+    text-align: center;
+}
+
+.topTab .chapterName p{
+    font-size: 18px;
+    margin: 0;
+    padding: 0 0 0 15px;
+}
+
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: #f7f7f7;
+    /*margin: 0;*/
+    /*padding: 0;*/
+}
+
+.myBook{
+    background-color: #fff;
+    padding: 2% 2% 15% 2%;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(34, 51, 51, 0.29);
+    margin: 55px -10px 0px -10px;
+
+}
+
+.myBook .bookImg{
+
+    padding:  5% 5% 0 5%;
+    cursor: pointer;
+    position: relative;
+    /**/
+    -moz-border-radius: 7%;
+    -webkit-border-radius: 7%;
+    border-radius: 7%;
+
+}
+
+.myBook .bookImg img{
+    width: 100%;
+    border-radius: 7%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.45);
+
+}
+
+.myBook .bookInfo{
+    padding:  7% 5% 0 5%;
+
+    /*margin: 7% 2%;*/
+}
+
+.myBook .bookInfo p{
+    font-size: 14px;
+    font-weight: bold;
+    word-break:normal;
+    word-wrapL:break-word;
+}
+
+.myBookBox{
+    position: relative;
+}
+
+
+.bookName p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+.addBookBtn{
+    right: 10%;
+    bottom: 10%;
+    position: absolute;
+
+}
+
+.addBookBtn span{
+    /*font-family: "华文细黑";*/
+    font-weight: bold;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: rgba(92, 184, 255, 0.59);
+    padding: 7px;
+    color: #fff;
+    box-shadow:  0px 3px 3px #223333;
+    cursor: pointer;
+}
+
+.addBookBtn span:hover{
+    background-color: #60d1ff;
+}
+
+.tipBox{
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    background-color: rgba(34, 51, 51, 0.71);
+    color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(35, 51, 51, 0.59);
+    line-height: 50px;
+    font-size: 18px;
+    display: none;
+    position: fixed;
+    left: calc(50% - 100px);
+    bottom: calc(50% - 25px);
+    z-index: 999
+}
+
+.summaryBox{
+    /*background-color: transparent;*/
+    /*display: none;*/
+}
+
+.summaryBox .summary {
+    /*padding: 2%;*/
+    background-color: #fff;
+    margin: 0px -10px;
+    padding: 15px;
+    -moz-border-radius: 0 0 5px;
+    -webkit-border-radius: 0 0 5px;
+    border-radius: 0 0 5px;
+    box-shadow: 5px 5px 5px rgba(34, 51, 51, 0.29);
+}
+
+.summaryBox .summary p{
+    text-indent: 2em;
+    padding: 3px;
+}
+
+.readBtn{
+    background-color: #5CB8FF;
+    cursor: pointer;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px;
+    z-index: 999;
+}
+
+.readBtn:hover{
+    background-color: #60d1ff;
+}
+
+.readBtn p{
+    line-height: 220%;
+    margin: 0;
+    font-weight: bold;
+    color: #e2fff6;
+}
+
+.chaptersBox{
+    display: none;
+    margin-bottom: 40px;
+}
+
+.chapters{
+    border: 1px solid #FFFAFA;
+    background-color: #fff;
+    margin: 0px -10px;
+    padding: 15px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 0 0 5px;
+    box-shadow: 5px 5px 5px rgba(34, 51, 51, 0.29);
+}
+
+.bookTabBox{
+    /*height: 40px;*/
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0;
+    background-color: #f7f7f7;
+    margin: 10px -10px 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius:  5px 5px 0 0;
+    box-shadow: 5px 5px 5px rgba(34, 51, 51, 0.29);
+}
+
+.bookTab .bookTabBox div{
+    padding: 10px;
+}
+
+.bookTab .summaryTab,.bookTab .chapterTab{
+    cursor: pointer;
+    position: relative;
+
+}
+
+.bookTab .summaryTab:hover,.bookTab .chapterTab:hover{
+    background-color: #cacbd0;
+}
+
+
+.chapters ul li{
+    list-style: none;
+    border-bottom: 2px solid #cacbd0;
+    padding: 5px 0;
+    width: 100%;
+}
+
+.chapters ul li a{
+    padding: 0;
+    text-decoration: none;
+}
+
+#chaptersList{
+
+}
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    .myBook .bookInfo  p,.addBookBtn ,p,ul li{
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .bookTab div,.bookName p{
+        font-size: 20px;
+        line-height: 180%;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    .myBook .bookInfo   p,.addBookBtn,p,ul li{
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    .bookTab div,.bookName p{
+         font-size: 24px;
+         line-height: 180%;
+    }
+}

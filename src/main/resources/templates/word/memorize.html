@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单词</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/word.css">
+</head>
+<body>
+<div class="word container w1">
+    <div style="width: 100%;height: 10px;"></div>
+    <!--返回-->
+    <div class="row word_return">
+        <div class="col-md-3 col-xs-3"><span class="glyphicon glyphicon-menu-left" id="return" style="font-size: 28px" onclick="returnIndex();"></span></div>
+        <div class="col-md-6 col-xs-6" style="text-align: center;font-size: 18px;font-family: 'KaiTi';font-weight: bold">单词背诵</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <p class="" style="margin: 0;font-size: 12px;text-align:center;">待学单词 <span class="newWordCount">15</span></p>
+        </div>
+    </div>
+    <div style="width: 100%;border: 1px solid #e6e6e6;margin-top: 5px;"></div>
+    <!--单词以及发音-->
+    <div class="row wordAndPron" style="margin-top: 40px;">
+        <p class="text-center" style="font-size: 24px" id="word"></p>
+        <p class="text-center">英 [<span id="pron_uk"></span>] <span class="glyphicon glyphicon-volume-down pron_uk_volume"></span></p>
+        <p class="text-center">美 [<span id="pron_us"></span>] <span class="glyphicon glyphicon-volume-down pron_us_volume"></span></p>
+    </div>
+    <!--显示释义区-->
+    <div class="row word_meaning">
+        <div class="col-md-offset-5 col-md-2" id="meanBtn" style="text-align: center;line-height: 200px;" onclick="showMean();">
+            <span>显示释义</span>
+        </div>
+
+        <div class="meaningArea">
+            <div class="center-block" style="text-align: center;padding-top: 90px;" id="meaning">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row hidden-xs">
+        <div  class="setOK col-md-offset-4 col-sm-offset-4 col-sm-4 col-md-4" style="text-align: center">
+            <span class="glyphicon glyphicon-ok-sign master"></span> 已掌握
+        </div>
+    </div>
+    <div  class="row hidden-xs nextWord">
+        <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4" style="text-align: center">
+            <span class="glyphicon glyphicon-arrow-right next_word"></span> 下一个
+        </div>
+    </div>
+    <div  class="row hidden-xs wordDetail">
+        <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4" style="text-align: center">
+            <span class="glyphicon glyphicon-question-sign detail_word"></span> 详 细
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="wordDetailBox container" style="padding: 0 10px 10px 10px;">
+<!--    单词-->
+    <div class="row wordName">
+        <div class=" col-xs-10">
+            <p class="word" style="font-size: 20px;font-weight: 700;"></p>
+        </div>
+    </div>
+<!--    音标-->
+    <div class="row wordPron">
+        <div class=" col-md-10 col-xs-10">
+
+            <p>英 [<span id="uk">'kəʊdɪŋ</span>] <span class="glyphicon glyphicon-volume-down pron_uk_volume"></span></p>
+<!--            <audio id="soundUK" class="sound"  src="http://media.shanbay.com/audio/uk/coding.mp3"></audio>-->
+            <p>美 [<span id="us">'koʊdɪŋ</span>] <span class="glyphicon glyphicon-volume-down pron_us_volume"></span></p>
+<!--            <audio id="soundUS" class="sound"  src="http://media.shanbay.com/audio/us/coding.mp3"></audio>-->
+        </div>
+    </div>
+<!--    分类-->
+    <div class="row classification">
+        <div class=" col-md-10 col-xs-10">
+            <p id="wordTag" style="font-style:italic;font-size: 14px">CET4/CET6/GRE/考研</p>
+        </div>
+    </div>
+<!--    <div class="row" style="height: 20px;background-color: #fff;"></div>-->
+
+</div>
+<div class="wordDetailBox container" style="padding: 0 10px 10px 10px;">
+<!--    释义-->
+    <div class="row wordPara">
+        <div class="col-xs-10"><h4 style="font-weight: 700;">单词释义</h4></div>
+        <div class="col-xs-12">
+            <p class="wordParaP"></p>
+        </div>
+    </div>
+<!--    <div class="row" style="height: 20px;background-color: #fff;"></div>-->
+
+
+</div>
+<div class="container wordDetailBox sentences" style="padding: 0 10px 10px 10px;margin-bottom: 70px;">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 style="font-weight: 700;">双语例句</h4>
+        </div>
+    </div>
+
+</div>
+
+<!--再来一组-->
+<div class="modal fade" id="again" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">是否再来一组？</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default backIndex" data-dismiss="modal"><a href="/">返回首页</a></button>
+                <button type="button submit" class="btn btn-primary sure">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<audio id="sound" class="sound" style="width: 0;height: 0;"  src=""></audio>
+<!--底部按钮-->
+<div class="row word_bottom footer navbar-fixed-bottom">
+    <div class="col-xs-4 visible-xs setOK" ><span class="glyphicon glyphicon-ok-sign"></span> 已掌握</div>
+    <div class="col-xs-4 visible-xs nextWord"><span class="glyphicon glyphicon-arrow-right"></span> 下一个</div>
+    <div class="col-xs-4 visible-xs wordDetail"><span class="glyphicon glyphicon-question-sign"></span> 详 细</div>
+</div>
+</body>
+
+<script src="/jq/jquery.min.js"></script>
+<script src="/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+<script>
+
+    function init(){
+        //发音
+        $(".pron_us_volume").click(function () {
+            let word = $("#word").html();
+            let src = "http://media.shanbay.com/audio/us/"+word+".mp3";
+            $("#sound").attr("src",src);
+            $("#sound")[0].play();
+        });
+        //发音
+        $(".pron_uk_volume").click(function () {
+            let word = $("#word").html();
+            let src = "http://media.shanbay.com/audio/uk/"+word+".mp3";
+            $("#sound").attr("src",src);
+            $("#sound")[0].play();
+        });
+        //例句发音
+        $(".sentencePron").click(function () {
+            let sen = $(this).attr("content");
+            let src = "http://dict.youdao.com/dictvoice?audio="+ sen +"&type=2";
+            $("#sound").attr("src",src);
+            $("#sound")[0].play();
+        });
+    }
+
+
+    //显示释义
+    function showMean() {
+        $("#meanBtn").toggle();
+        $(".meaningArea").toggle(200);
+    }
+
+    //点击释义又消失
+    $(".meaningArea").click(function () {
+        $(".meaningArea").toggle();
+        $("#meanBtn").toggle(200);
+    });
+
+    // 返回上一个界面
+    function returnIndex() {
+        window.history.back(-1);
+    }
+
+    //word对象
+
+    //用words保存复习和新词
+    let reviewWords = new Array();
+    //新词数组
+    let newWords = new Array();
+    //reviewWorded保存复习过的
+    let reviewWorded = new Array();
+    //newWorded保存新词学习过的
+    let newWorded = new Array();
+    let reviewCount = 0;
+
+    $(function () {
+
+        //init
+
+        //页面传参，传复习总数，接收
+        //模拟
+        reviewCount = 200;
+
+
+        /**
+         * if(reviewCount > 0)
+         请求返回复习数组
+         如果成功，返回单词数组，reviewWords接收，curr++，reviewCount-=reviewWords.length
+         显示数组第一个单词
+         */
+
+        /**
+         * if(reviewCount > 0)
+         * 如果为空，重新请求，返回新词，15一组
+         */
+
+
+    })
+
+    //复习
+    //
+    /**
+     * 下一个，将数组头部元素弹出，判断是否为空，不为空则读取下一个，为空则继续发请求
+     * 将弹出的单词加入worded数组，格式为id，
+     */
+
+    //详情
+
+</script>
+<script>
+
+    //新词数组
+    let words = new Array();
+    let ids = new Array();
+    //当前背词词汇
+    let currWord = 0;
+    //获取单词详情flag，防止多次重复获取wordDetail，浪费资源
+    let wordFlag = "";
+    let curr = 1;
+    //词书id
+    let wordbook_id = getQueryVariable("wordbook_id");
+    window.onload = function (ev) {
+
+        //点击详情
+        $(".wordDetail").click(function () {
+            //获取word
+            let word= $("#word").html().trim();
+            if(wordFlag == word){
+                $(".w1").toggle(200);
+                $(".wordDetailBox").toggle();
+
+                return
+            }else {
+                wordFlag = word;
+
+            }
+
+            //查询该单词的详细数据
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                url: "/wordect//findWordDetailJson/"+word,
+                dataType: "json", //json类型
+                success: function(result) {
+                    console.log(result);
+
+                    if(result.code == 200){
+                        let word = result.wordEctDetail;
+                        //填入相应数据
+                        $(".wordName .word").html(word.word);
+                        $(".wordPron #us").html(word.pron_us);
+                        $(".wordPron #uk").html(word.pron_uk);
+
+                        //单词分类处理
+                        if(word.tag != null){
+                            $(".classification #wordTag").html(word.tag);
+                        }else {
+                            $(".classification #wordTag").html("暂无分类");
+                        }
+                        //释义处理，因为这个结果返回的释义用\n换行，所以要将其替换为<br>
+                        $(".wordPara .wordParaP").html(word.translation.replace(/\\n/gi,"<br>"));
+                        //清空例句
+                        $(".sentences").html("");
+                        //重新写入例句
+                        $.each(word.sentences,function (i,item) {
+                            $(".sentences").append("<div class=\"row sentence\">\n" +
+                                "        <div class=\"col-xs-12 sentence_en\">\n" +
+                                "            <p>"+ parseInt(parseInt(i)+1) +". "+ item.en +
+                                "               <span content='"+ item.en +"' class='glyphicon glyphicon-volume-down sentencePron'></span>" +
+                                "           </p> " +
+                                "        </div>\n" +
+                                "\n" +
+                                "        <div class=\"col-xs-12 sentence_cn\">\n" +
+                                "            <p>" + item.cn +
+                                "                </p>\n" +
+                                "        </div>\n" +
+                                "    </div>")
+                        })
+
+                    }
+
+                    //显示和隐藏
+                    $(".w1").toggle(200);
+                    $(".wordDetailBox").toggle();
+
+                    //事件更新
+                    init();
+
+                },
+                error: function(errmsg) {
+                    console.log("Ajax获取服务器数据出错了！"+ errmsg);
+                }
+
+            })
+        });
+
+
+        //默认查询，返回15个新词
+        let data = {curr:curr,size:15};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            data:data,
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/myWordbook/words/"+wordbook_id+"/1",
+            dataType: "json", //json类型
+            success: function(result) {
+                // var result = JSON.stringify(result);  // 需解析，否则返回 object
+                console.log(result);
+                if(result.code == 200){
+                    words = result.words;
+                    if(words.length > 0){
+                        let word = words[0];
+                        $("#word").html(word.word);
+                        $("#pron_uk").html(word.pron_uk);
+                        $("#pron_us").html(word.pron_us);
+                        $("#meaning").html(word.paraphrase);
+                    }else {
+                        alert("学习完了所有的单词！")
+                        window.location.href = "/";
+                    }
+
+                }
+                currWord++
+                curr++;
+                init();
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+        });
+
+
+        //点击下一个
+        $(".nextWord").click(function () {
+            //如果没有背完15个单词
+            if(currWord < 15){
+                //更新顶部待学新词
+                $(".newWordCount").html((15-currWord));
+                //获取下一个新词
+                let word = words[currWord++];
+                //更新相应数据
+                $("#word").html(word.word);
+                $("#pron_uk").html(word.pron_uk);
+                $("#pron_us").html(word.pron_us);
+                $("#meaning").html(word.paraphrase);
+                init();
+                //确保回到原先的背词界面
+                $(".w1").show(200);
+                $("#meanBtn").show(200);
+                $(".meaningArea").hide(200);
+                $(".wordDetailBox").hide(200);
+            }else {
+                for(let i = 0;i < words.length;i++){
+                    ids[i]=words[i].id;
+                }
+                //已经背完15个单词，应该有提示，问是否再来一组，或者复习
+                $("#again").modal("show");
+                //将刚才的单词插入数据库
+                $.ajax({
+                    type: "post",
+                    async: true,     //异步执行
+                    data:JSON.stringify(ids),
+                    contentType: "application/json;charset=UTF-8",
+                    url: "/wordbook/myWordbook/insert/"+wordbook_id,
+                    dataType: "json", //json类型
+                    success: function(result) {
+                        console.log(result);
+                        if(result.code == 200){
+
+                        }
+                    },
+                    error: function(errmsg) {
+                        console.log("Ajax获取服务器数据出错了！"+ errmsg);
+                    }
+                });
+            }
+
+
+        })
+    };
+
+
+    //再来一组
+    $(".sure").click(function () {
+        currWord = 0;
+        $(".newWordCount").html(15);
+        let data = {curr:curr,size:15};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            data:data,
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/myWordbook/words/"+wordbook_id+"/1",
+            dataType: "json", //json类型
+            success: function(result) {
+                // var result = JSON.stringify(result);  // 需解析，否则返回 object
+                console.log(result);
+                if(result.code == 200){
+                    words = result.words;
+                    if(words.length > 0){
+                        let word = words[0];
+                        $("#word").html(word.word);
+                        $("#pron_uk").html(word.pron_uk);
+                        $("#pron_us").html(word.pron_us);
+                        $("#meaning").html(word.paraphrase);
+                        $("#again").modal('hide')
+
+                    }else {
+                        alert("学习完了所有的单词！");
+                        window.location.href = "/";
+                    }
+
+                }
+                currWord++;
+                curr++;
+                init();
+                $("#again").modal("hide")
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+        });
+    });
+
+    $(".backIndex").click(function () {
+        window.location.href = "/";
+    })
+    //获取页面参数
+    function getQueryVariable(variable)
+    {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i=0;i<vars.length;i++) {
+            let pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+</script>
+</html>

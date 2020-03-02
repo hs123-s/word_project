@@ -1,0 +1,317 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #FFF2E2;
+}
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    height: 50px;
+    padding: 5px 15px 5px 15px;
+    display: none;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+
+}
+.topTab .row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+.topTab span{
+    width: 80%;
+}
+.topTab .back{
+
+}
+.topTab .chapterName{
+    text-align: center;
+}
+.topTab .chapterName p{
+    font-size: 18px;
+    margin: 0;
+    padding: 0 0 0 15px;
+}
+
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: #f7f7f7;
+    /*margin: 0;*/
+    /*padding: 0;*/
+}
+#chapters{
+    width: 60%;
+    height: 100%;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 178, 95);
+    z-index: 99;
+    box-shadow: 5px 5px 5px #3c3c3c;
+}
+#chapters ul li{
+    list-style: none;
+    border-bottom: 2px solid #cacbd0;
+    padding: 5px 0;
+}
+#chapters ul li a{
+    color: #000;
+}
+
+.chapterName p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+#content{
+    position: relative;
+    font-family: "Georgia","宋体";
+    font-size: 16px;
+}
+#content p{
+
+    text-indent: 2em;
+
+}
+
+#content p span{
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+#content p span:hover{
+    background-color: #f5f5f5;
+    color: #985f0d;
+
+}
+
+#content p button{
+    outline: none;
+    border: none;
+    padding: 3px;
+    font-size: 12px;
+    line-height: 12px;
+    border-radius: 50%;
+    background-color: rgba(60, 60, 60, 0.53);
+    color: #f7f7f7;
+    margin-left: 3px;
+
+}
+#content p button:hover{
+    background-color: #000;
+}
+
+.functionTab{
+    position: relative;
+    box-shadow: 0px -2px 2px rgba(34, 51, 51, 0.53);
+}
+
+.functionTab,#wordMeaning{
+    display: none;
+    width: 100%;
+    /*height: 50px;*/
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+#wordMeaning #word {
+    box-shadow: 0 -5px 5px #9f9f9f;
+    border-radius: 5px 10px 0 0;
+    background-color: #ccc;
+}
+
+.functionTab .row{
+    display: flex;
+    justify-content: space-between;
+}
+
+.functionTab .row>div{
+    padding: 10px 40px;
+    cursor: pointer;
+}
+.functionTab .row div img{
+    width: 30px;
+}
+.fontSizeBtn{
+    /*position: relative;*/
+
+}
+
+.fontSizeEdit{
+    display: none;
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    padding: 10px 0;
+    left: 0;
+    background-color: #ffbe86;
+}
+.fontSizeEdit>div{
+    display: flex;
+    justify-content: center;
+}
+
+.fontSizeEdit div span{
+    margin: 5px 10px;
+}
+
+.fontSizeEdit .fontSize{
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px;
+    font-size: 16px;
+    background-color: #ff904b;
+    box-shadow: 2px 2px 2px rgba(60, 60, 60, 0.38);
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+.fontSizeEdit .fontSize:hover{
+    background-color: #ff904b;
+}
+
+.fontSizeEdit .fontFamily span{
+    display: inline-block;
+    padding: 2px;
+    cursor: pointer;
+    background-color: #ff904b;
+    box-shadow: 2px 2px 2px rgba(60, 60, 60, 0.38);
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+
+.fontSizeEdit .colorArea>span{
+    display: inline-block;
+    margin: 5px 10px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #223333;
+    box-shadow: inset 1px 1px 1px rgba(60, 60, 60, 0.64);
+    cursor: pointer;
+}
+.fontSizeEdit .colorArea>span:hover{
+
+}
+
+#sentenceMeaning{
+    display: none;
+    width: 80%;
+    margin: 0 10%;
+    background-color: rgba(34, 51, 51, 0.79);
+    color: #fff;
+    position: fixed;
+    top: 100px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#sentenceMeaning p{
+    padding: 5px;
+    margin: 0;
+}
+
+/*单词释义*/
+#wordMeaning #word p{
+    padding: 5px 0;
+    margin: 0;
+}
+
+/*单词释义的单词*/
+#wordMeaning #word .word{
+    font-size: 120%;
+    line-height: 120%;
+
+}
+
+/*单词释义的释义*/
+#wordMeaning #word .wordMean{
+    font-style: italic;
+}
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    #content p{
+        font-size: 18px;
+        line-height: 140%;
+    }
+}
+
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    #content p{
+        font-size: 20px;
+        line-height: 140%;
+    }
+    #functionTab{
+        width: 50px;
+        right:  0;
+        top: 0;
+        margin: 0;
+        box-shadow: -2px 0px 2px rgba(34, 51, 51, 0.53);
+
+    }
+
+    #topTab{
+        width: 50px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin: 0;
+        box-shadow: 2px 0px 2px rgba(34, 51, 51, 0.53);
+
+    }
+    .topTab .chapterName p{
+        padding-left: 0;
+    }
+    .functionTab .row,.topTab .row{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .functionTab,.topTab{
+        display: block;
+    }
+    #sentenceMeaning{
+        width: 50%;
+        margin: 0 25%;
+    }
+    #chapters{
+        width: 30%;
+        padding-left: 10px;
+    }
+
+    .fontSizeEdit{
+        width: 100%;
+        right: 0px;
+        bottom: 0;
+        left: 0;
+        top: 50px;
+
+    }
+    .fontSizeEdit div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .fontSizeEdit div span{
+        margin:10px 0;
+    }
+
+    .fontSizeEdit .colorArea>span{
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阅读界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/read.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+
+
+
+<!--顶部-->
+<div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1" style="cursor: pointer">
+            <p><span class="glyphicon glyphicon-menu-left"></span></p>
+        </div>
+        <div class="chapterName col-xs-8 col-md-8"></div>
+        <div class="gotoBookDetail  col-xs-2 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical bookDetail"></span></div>
+    </div>
+</div>
+
+<!--章节-->
+<div id="chapters" >
+    <ul id="chaptersUL">
+
+        <li class="bookName"></li>
+
+    </ul>
+</div>
+
+<div class="read container">
+
+<!--    <button class="showChapters" >章节</button>-->
+    <div id="content" style="min-height: 1000px;">
+<!--        <p id="pre">"He can't come back, Harry," said Lupin,-->
+<!--            his voice breaking as he struggled to contain Harry. "He can't come back, because he's d &#45;&#45;"</p>-->
+<!--        <p>"SIRIUS!" he bellowed. "SIRIUS!" <button>译</button></p>-->
+
+    </div>
+
+</div>
+<div id="functionTab" class="functionTab container ">
+    <div class="row">
+
+        <!--    字体修改-->
+        <div class="fontSizeBtn">
+            <img src="/img/readFontSize.png" alt="">
+
+        </div>
+        <!--    播放-->
+        <div class="listenBtn">
+            <img src="/img/readEarphone.png" alt="">
+        </div>
+        <!--    显示章节列表-->
+        <div class="chaptersBtn">
+            <img src="/img/readList.png" alt="">
+        </div>
+
+
+    </div>
+    <div class="fontSizeEdit">
+        <div class="sizeArea">
+            <span class="fontSizeSmaller fontSize ">A -</span>
+            <span class="fontSizeNum"></span>
+            <span class="fontSizeBigger fontSize ">A+</span>
+        </div>
+        <div class="fontFamily">
+            <span style='font-family: "Arial", "宋体"'>Arial</span>
+            <span style='font-family: "Georgia", "宋体"'>Georgia</span>
+            <span style='font-family: "Microsoft YaHei UI", "宋体"'>Ya Hei</span>
+        </div>
+        <div class="colorArea">
+            <span style="background-color: #ffffff;"></span>
+            <span style="background-color: #C7EDCC;"></span>
+            <span style="background-color: #FFF2E2;"></span>
+            <span style="background-color: #f0ffde;"></span>
+
+        </div>
+    </div>
+</div>
+<div id="wordMeaning">
+<!--    类似于worddetail的第一部分-->
+    <div id="word" class="container" >
+        <audio id="sound" class="sound"  style="display:none;" src=""></audio>
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+<div id="sentenceMeaning"></div>
+
+</body>
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+<script src="/js/scrollbot.min.js"></script>
+
+<!--样式修改-->
+<script>
+    //修改样式按钮
+    $(".fontSizeBtn").click(function () {
+        event.stopPropagation();
+
+        $(".fontSizeEdit").toggle(200);
+
+    });
+
+    //本地存储
+    let fontSizeNum =  parseInt( $("#content").css("font-size").replace("px",""));
+    // let fontSizeNum =  16;
+    let myStorage =localStorage;
+    loadStorage(myStorage,fontSizeNum);
+    function loadStorage(myStorage,num) {
+        if(myStorage.getItem('fontSize') == null){
+            myStorage.setItem('fontSize',num);
+            $(".read #content").css("font-size",num+"px");
+
+        }else {
+            fontSizeNum = parseInt(myStorage.getItem('fontSize'));
+            $(".read #content").css("font-size",fontSizeNum+"px");
+        }
+        //默认大小
+        $(".fontSizeNum").html(fontSizeNum);
+    }
+
+
+
+
+    // $(".fontSizeNum").html(fontSizeNum);
+    //字体变小
+    $(".sizeArea .fontSizeSmaller").click(function () {
+        loadStorage(myStorage,fontSizeNum);
+        console.log(fontSizeNum);
+        event.stopPropagation();
+        if(fontSizeNum <= 14){
+            return false;
+        }else {
+            $(".fontSizeNum").html(--fontSizeNum);
+            $("#content").css("font-size",fontSizeNum+"px");
+            myStorage.setItem('fontSize',fontSizeNum)
+        }
+
+    });
+
+    //字体变大
+    $(".sizeArea .fontSizeBigger").click(function () {
+        event.stopPropagation();
+        if(fontSizeNum >= 28){
+            return false;
+        }else {
+            $(".fontSizeNum").html(++fontSizeNum);
+            $("#content").css("font-size",fontSizeNum+"px")
+            myStorage.setItem('fontSize',fontSizeNum);
+        }
+
+    });
+
+    $(".functionTab,.topTab").click(function () {
+        event.stopPropagation();
+    });
+    //颜色
+    $(".colorArea span").click(function () {
+        event.stopPropagation();
+        $("body").css("background",$(this).css("background"))
+    });
+
+    $(".fontFamily span").click(function () {
+        event.stopPropagation();
+        $("#content").css("font-family",$(this).css("font-family"))
+    })
+
+</script>
+<!--测试-->
+<script>
+
+    $(function () {
+        // $("#pre").html($("#pre").html().replace(/([A-z]+)/gi,'<span>$1</span>'))
+    })
+</script>
+<script>
+
+
+
+    //滚动框
+    let myChapters;
+    let myChaptersFlag = false;
+
+    $("#chapters").click(function () {
+        event.stopPropagation();
+    });
+
+
+    function initReadFun(){
+
+
+        //显示单词释义
+        $("#content p").on("click","span",function () {
+            let word = $(this).html();
+            //显示单词释义
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                url: "/wordect/findWord/"+word,
+                dataType: "json", //json类型
+                success: function (result) {
+                    console.log(result);
+                    if(result.code === 200){
+                        let wordect = result.wordEct;
+                        $("#wordMeaning #word").html("<div class=\"col-xs-10\">\n" +
+                            "            <p class=\"word\" content=\""+ wordect.word +"\">"+ wordect.word +"</p>\n" +
+                            "            <p class=\"wordList-pron\" >"+"美 ["+wordect.pron_us +"]   英 ["+ wordect.pron_uk +"]</p>\n" +
+                            "            <p class=\"wordMean\">"+ wordect.translation.replace(/\\n/gi,"  ") +"</p>\n" +
+                            "        </div>\n" +
+                            "        <div class=\"col-xs-2\"><span title=\""+ wordect.word +"\" class=\"glyphicon glyphicon-volume-down pron\"></span></div>\n");
+                        // $("#wordMeaning #mean").html(wordect.translation.replace(/\\n/gi,"<br>"));
+                        $("#wordMeaning").fadeIn(200);
+                        $(".functionTab,.topTab,#sentenceMeaning").fadeOut(200);
+                    }
+                },
+                error: function (errmsg) {
+                    console.log("Ajax获取服务器数据出错了！" + errmsg);
+                }
+            })
+            $("#wordMeaning").fadeIn(200);
+            $(".functionTab,.topTab,#sentenceMeaning").fadeOut(200);
+
+            // 防止击穿
+            event.stopPropagation();
+        });
+
+
+    }
+
+
+    // 点击空白出现功能栏
+    $(".read,body").click(function () {
+        event.stopPropagation();
+        //如果
+        if($("#sentenceMeaning").css("display") == "block"){
+            $("#sentenceMeaning").fadeOut(200);
+        }else if($("#wordMeaning").css("display") == "block"){
+            $("#wordMeaning").fadeOut(200);
+        }else if ($(".fontSizeEdit").css("display") == "block"){
+            $(".fontSizeEdit").fadeOut(200);
+            $(".functionTab,.topTab").toggle(300);
+        }else if($("#chapters").css("display") == "block"){
+            $("#chapters").fadeOut(200);
+            $(".functionTab,.topTab").toggle(300);
+        }else{
+            $(".functionTab,.topTab").toggle(300);
+
+        }
+        //
+    });
+
+
+
+    //章节号
+    let chapter_index = getQueryVariable("chapter_index");
+    //上次阅读位置
+    let last_loc = getQueryVariable("last_loc");
+    let from = getQueryVariable("from");
+    let index_book  =  parseInt(parseInt(chapter_index)/10000);
+    let last_para_id = 0;
+    //正在阅读的
+    let reading_id;
+
+    $(function () {
+        if(last_loc){
+            chapter_index = last_loc.split("_")[0];
+            index_book =  parseInt(parseInt(chapter_index)/10000);
+            last_para_id = last_loc.split("_")[1];
+        }
+
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/book/read/"+chapter_index,
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result);
+                if(result.code === 200){
+                    $(".chapterName").html("<p>" +result.chapter.chapter_name+  "</p>")
+                    $.each(result.chapter.paragraphs,function (i,item) {
+                        if(i == 0){
+                            reading_id = item.id;
+                        }
+                        //释义处理，因为这个结果返回的释义用\n换行，所以要将其替换为<br>
+
+                        let para_en = item.para_en;
+                        let en = para_en.replace(/([A-z]+)/gi,'<span>$1</span>');
+                        $("#content")
+                            .append("<p  content='"+item.id+"'>" + en + "<button class='showMeaning' name='"+item.id +"'>译</button></p>")
+                    })
+
+                }
+                if(last_para_id != 0 && last_para_id != undefined && last_para_id != "undefined"){
+                    // console.log($("p[title='"+last_para_id+"']").offset().top);
+                    //跳转
+                    $("html,body").animate({scrollTop:$("p[content='"+last_para_id+"']").offset().top},1000);
+                }
+
+                //绑定事件
+                initReadFun();
+
+                //获取翻译,需要用on为其加载事件
+                $(".showMeaning").on("click",this,function () {
+                        event.stopPropagation();
+                        let id = $(this).attr("name");
+                        $.ajax({
+                            type: "post",
+                            async: true,     //异步执行
+                            contentType: "application/json;charset=UTF-8",
+                            url: "/book/getCn/"+id,
+                            dataType: "json", //json类型
+                            success: function (result) {
+                                console.log(result);
+                                if(result.code === 200){
+                                    // alert(result.paragraph.para_cn);
+                                        $("#sentenceMeaning").html("<p>" + result.paragraph.para_cn +"</p>")
+                                        $("#sentenceMeaning").fadeIn(200);
+                                        $(".functionTab,.topTab,#wordMeaning").fadeOut(200);
+                                }
+                            },
+                            error: function (errmsg) {
+                                console.log("Ajax获取服务器数据出错了！" + errmsg);
+                            }
+                        })
+                    }
+                );
+
+            },
+            error: function (errmsg) {
+
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+            }
+        })
+    });
+
+
+    let curr = 1;
+    //显示章节列表
+    $(".chaptersBtn").click(function () {
+        event.stopPropagation();
+        if($("#chapters").css("display") == "none"){
+            $(".fontSizeEdit").fadeOut(200);
+            // $("#chapters").css("display","block");
+            $("#chapters").fadeIn(300);
+            event.stopPropagation();
+            //滚动条美化
+            if(!myChaptersFlag){
+                //ajax加载数据
+                let index_book = parseInt(chapter_index/10000);
+                let data = {curr:curr,size:20};
+                data = JSON.stringify(data);
+                $.ajax({
+                    type: "post",
+                    async: true,     //异步执行
+                    contentType: "application/json;charset=UTF-8",
+                    data: data,
+                    url: "/book/mybook/chapters/"+index_book,
+                    dataType: "json", //json类型
+                    success: function (result) {
+                        console.log(result);
+                        if(result.code === 200){
+                            curr++;
+                            $.each(result.chapters,function (i,item) {
+                                //当前目录
+                                if(item.chapter_index == chapter_index){
+                                    $("#chaptersUL").append("<li ><a style='color:#269abc' href=\"/book/gotoRead?chapter_index="+ item.chapter_index +"&from="+ from +"\">"+ item.chapter_name +"</a></li>")
+                                }else{
+                                    $("#chaptersUL").append("<li><a href=\"/book/gotoRead?chapter_index="+ item.chapter_index +"&from="+ from +"\">"+ item.chapter_name +"</a></li>");
+                                }
+                            })
+                        }
+                    },
+                    error: function (errmsg) {
+                        console.log("Ajax获取服务器数据出错了！" + errmsg);
+                    }
+                });
+
+                myChapters = new scrollbot("#chapters",10);
+                myChapters.setStyle({
+                    "background":"#3c3c3c",
+                    "z-index":"2222",
+                    "border-radius":"5px"
+                },{
+                    "background":"rgba(0,0,0,0)"
+                });
+
+                let psuedo = document.createElement("div");
+                psuedo.style.cssText = "height:100%;width:2px;left:4px;background:#808080;position:absolute;z-index:1";
+                //设置包裹滚动条的容器
+                myChapters.scrollBarHolder.appendChild(psuedo);
+                myChaptersFlag = !myChaptersFlag;
+
+                // 在窗口尺寸改变时重新计算滚动条的位置。
+                document.onreadystatechange = function(){
+                    myChapters.refresh();
+                };
+            }
+        }else{
+            $("#chapters").fadeOut(300);
+        }
+
+    });
+
+
+    //返回
+    $(".back").click(function () {
+        //来源是书架，则退回书架
+
+        if("shelf" ==  from){
+            update();
+
+            window.location.href = "/book/gotoShelf"
+        }else if("store" == from){
+            //来源是书藉详细页，书籍详情
+            index_book = parseInt(parseInt(chapter_index)/10000);
+            console.log(index_book);
+            window.location.href = "/book/gotoBookDetail?index_book="+index_book;
+        }else{
+            //
+            // update();
+            window.history.back(-1);
+        }
+    });
+
+    //返回书籍详情
+    $(".bookDetail").click(function () {
+        if("shelf" == from){
+            update();
+        }
+        window.location.href = "/book/gotoBookDetail?index_book="+index_book;
+    });
+
+
+    //已添加的才监听
+    if("shelf" == from){
+        //滚动监听,获取最顶部的句子
+        $(window).scroll(function() {
+            let top = $(document).scrollTop();
+            $('#content p').each(function (i) {
+                let pos = $(this).offset().top;
+                //15px范围触发
+                if(Math.abs(top - pos) <= 15){
+                    reading_id = $(this).attr("content");
+                }
+            })
+
+        });
+
+        //定时器，90秒更新一次
+        setTimeout(function () {
+            update();
+        },90*1000);
+    }
+
+    //页面关闭，刷新,暂时无效
+    // window.onUnload = function () {
+    //     if("shelf" == from){
+    //         alert("s");
+    //         update();
+    //     }
+    //
+    // };
+
+
+
+
+    //更新阅读位置
+    function update() {
+        let last_loc = chapter_index +"_" +reading_id;
+        console.log(reading_id)
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/book/update/"+ index_book +"/"+last_loc,
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+            }
+        })
+    }
+
+    //获取页面参数
+    function getQueryVariable(variable)
+    {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i=0;i<vars.length;i++) {
+            let pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+</script>

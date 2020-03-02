@@ -1,0 +1,153 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+e-mail : <input type="text" ><br>
+password : <input type="password" ><br>
+confirm password : <input type="password"><br>
+nickname : <input type="text" ><br>
+<button onclick="TestAjax();">submit</button>
+
+<a href="/learner/gotoLogin">去登录</a>
+<span id="data"></span>
+<div>可打开浏览器控制台查看结果</div>
+<script src="http://shared.ydstatic.com/js/jquery/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script src="https://cdn.bootcss.com/js-sha256/0.9.0/sha256.js"></script>
+
+
+
+<script type="text/javascript">
+    function TestAjax(){
+
+        var str = {"id":1};
+        var data = JSON.stringify(str);
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/learner/register",
+            jsonp: "callback",
+
+
+            dataType: "jsonp", //json类型
+            success: function(result) {
+                // console.log(result);
+                var result = JSON.stringify(result);  // 需解析，否则返回 object
+                console.log(result)
+                $("#data").text(result)
+
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+
+        })
+    }
+
+</script>
+<!--<script type="text/javascript">-->
+    <!--var appKey = '21fe50af487be8a3';-->
+    <!--var key = 'CcfZ1g9s9eMBqD31pPQQZfrF03LmSX3n';//注意：暴露appSecret，有被盗用造成损失的风险-->
+    <!--var salt = (new Date).getTime();-->
+    <!--var curTime = Math.round(new Date().getTime()/1000);-->
+    <!--var query = 'word';-->
+    <!--// 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'-->
+    <!--var from = 'en';-->
+    <!--var to = 'cn';-->
+    <!--var str1 = appKey + truncate(query) + salt + curTime + key;-->
+    <!--console.log(str1);-->
+    <!--var sign = sha256(str1);-->
+    <!--$.ajax({-->
+        <!--url: 'http://openapi.youdao.com/api',-->
+        <!--type: 'post',-->
+        <!--dataType: 'jsonp',-->
+        <!--data: {-->
+            <!--q: query,-->
+            <!--appKey: appKey,-->
+            <!--salt: salt,-->
+            <!--from: from,-->
+            <!--to: to,-->
+            <!--sign: sign,-->
+            <!--signType: "v3",-->
+            <!--curtime: curTime-->
+        <!--},-->
+        <!--success: function (data) {-->
+            <!--console.log(data);-->
+        <!--}-->
+    <!--});-->
+
+    <!--function truncate(q){-->
+        <!--var len = q.length;-->
+        <!--if(len<=20) return q;-->
+        <!--return q.substring(0, 10) + len + q.substring(len-10, len);-->
+    <!--}-->
+<!--</script>-->
+
+
+<script>
+    // $(document).ready(function () {
+    //     var alldata;
+    //     $.ajax({
+    //         url:"../text.json",
+    //         async:false,
+    //         success:function (data) {
+    //             alldata = data;
+    //
+    //         },
+    //         error:function () {
+    //             alert("error!")
+    //         }
+    //     });
+    //     if(alldata != null){
+    //         var index = 0;
+    //
+    //         for(var ever in alldata){
+    //             var content = alldata[index].content.word.content;
+    //             var synos;
+    //             var synoStr = "";
+    //             var indexMean = 0;
+    //             if(typeof content.syno != "undefined"){
+    //                 synos = content.syno.synos;
+    //                 for(var mean in synos){
+    //                     synoStr += (synos[indexMean].pos + ". " + synos[indexMean].tran + " ");
+    //                     indexMean++;
+    //                 }
+    //             }else {
+    //                 var indexTrans = 0;
+    //                 var transStr = "";
+    //                 var trans = content.trans;
+    //                 for(var tran in trans){
+    //                     transStr += (trans[indexTrans].pos + ". " + trans[indexTrans].tranCn + " ");
+    //                 }
+    //             }
+    //
+    //
+    //             var str = "";
+    //             if("" == synoStr){
+    //                 str = transStr;
+    //             }else {
+    //                 str = synoStr;
+    //             }
+    //
+    //             // insert into level4_core (word,meaning) values
+    //             $("#words").append("(\""  +
+    //                 alldata[index].headWord + "\" ,\"" + str +"\"),"
+    //                 +"");
+    //             index ++;
+    //         }
+    //
+    //
+    //     }
+    //         // json长度
+    //         console.log(Object.keys(alldata).length);
+    //
+    //
+    // })
+</script>
+<div id="words">
+
+</div>
+</body>

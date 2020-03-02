@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的词书详细界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/myWordbookDetail.css">
+<!--    <link rel="stylesheet" href="/css/toptab.css">-->
+
+</head>
+<body>
+
+<div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1 " style="cursor: pointer">
+            <p><span class="glyphicon glyphicon-menu-left"></span></p>
+        </div>
+        <div class=" col-xs-8 col-md-8"><p>词书详情</p></div>
+        <div class="gotoBookDetail col-xs-2 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+    </div>
+    <div class="container" style="padding: 0;">
+        <div class="row wordTypes">
+            <div class="col-xs-4">
+                <div id="unMemorize" class="selected">
+                    <p>未背</p>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div id="memorizing" ><p>复习中</p></div>
+            </div>
+           <div class="col-xs-4">
+               <div id="memorized" ><p>掌握</p></div>
+           </div>
+<!--            暂不实现，太多活了，👴烦了-->
+<!--           <div class="col-xs-3">-->
+<!--               <div class="edit"><p>编辑</p></div>-->
+<!--           </div>-->
+        </div>
+    </div>
+</div>
+
+
+
+<div id="words" class="container">
+    <audio id="sound" class="sound"  style="display:none;" src=""></audio>
+    <div class="row unWordList"></div>
+    <div class="row wordingList"></div>
+    <div class="row wordedList"></div>
+
+
+</div>
+<!--    阅读按钮-->
+<div class="container" style="display: flex;justify-content: center;">
+    <div class="showWordsBtn" style="width: 70%"><p style="text-align:center;">更 多</p></div>
+</div>
+</body>
+
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+<script src="/js/dropload.min.js"></script>
+
+<!--下拉刷新（*）-->
+<script>
+
+
+    //获取页面参数
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+
+
+</script>
+
+
+<!--发音-->
+<script>
+
+    $(".back").click(function () {
+        window.history.back(-1);
+    });
+
+    reloadUtil();
+
+    //因为往页面新添东西是没有绑定事件的，所以要重新绑定，这样还不如用freemarker呢，哎。
+    function reloadUtil(){
+        //点击发音(到时要用on)
+        $(".pron").on("click",this,function () {
+            let word = $(this).attr("title");
+            let src = "http://media.shanbay.com/audio/us/"+word+".mp3";
+            $("#sound").attr("src",src);
+            $("#sound")[0].play();
+        });
+
+        //斩词按钮
+        $(".cutBox").on("click",this,function () {
+            $(this).parent().fadeOut(200);
+            //弄个特效，其实里面也可以ajax
+            setTimeout(function () {
+                //     $(this).parent().parent().removeChild($(this).parent())
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            },200)
+
+        });
+
+        //重新学习按钮
+        $(".reLearnBox").on("click",this,function () {
+            $(this).parent().fadeOut(200);
+            //弄个特效，其实里面也可以ajax
+            setTimeout(function () {
+                //     $(this).parent().parent().removeChild($(this).parent())
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            },200)
+
+        });
+
+    }
+
+    // 类型选中后效果
+    $("#memorizing,#memorized,#unMemorize").click(function () {
+
+        $("#memorizing,#memorized,#unMemorize").removeClass("selected");
+        $(this).addClass("selected");
+        $(".cutBox,.reLearnBox").hide(100)
+    });
+
+    //编辑
+    $(".edit").click(function () {
+       $(".cutBox,.reLearnBox").toggle(300);
+        event.stopPropagation();
+    })
+
+
+</script>
+<SCRIPT>
+
+    //未背curr
+    let currUn = 1;
+    let unFlag = true;
+    //记忆中curr
+    let currIng = 1;
+    let ingFlag = true;
+    //掌握curr
+    let currEd = 1;
+    let edFlag = true;
+    //获取词书id
+    let wordbookId = getQueryVariable("id");
+    // wordsType 返回单词类型，1为未背，2为记忆中，3为已掌握
+    let wordsType = 1;
+    $(function () {
+
+        /**
+         * 先默认加载未背单词
+         * @type {*|boolean}
+         */
+
+            // 分页
+        var data = {curr:currUn,size:30};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            data: data,
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/myWordbook/words/" +wordbookId+ "/1",
+            dataType: "json", //json类型
+            success: function(result) {
+                currUn++;
+                unFlag = false;
+                console.log(result)
+                if(result.code == 200){
+                    $.each(result.words,function (i,item) {
+                        $('.unWordList').append("<div class=\"wordBox\">\n" +
+                            "            <div class=\"col-xs-10 wordArea\">\n" +
+                            "                <p class=\"word\" title=\""+ item.word +"\">"+ item.word +"</p>\n" +
+                            "                <!--            将换行去除-->\n" +
+                            "                <p class=\"wordMean\">"+ item.paraphrase +"</p>\n" +
+                            "            </div>\n" +
+                            "\n" +
+                            "            <div class=\"col-xs-1 pronBox\" style=\"padding: 0 5px;\"><span title=\""+ item.word +"\" class=\"glyphicon glyphicon-volume-down pron\" > </span></div>\n" +
+                            "            <div class=\"col-xs-1 cutBox\" style=\"padding: 0 5px;\"><span title=\""+ item.id +"\" class=\"cutWord\" >斩</span></div>\n" +
+                            "            <div class=\"col-xs-12 word-line\"></div>\n" +
+                            "        </div>")
+                    })
+                }
+
+                reloadUtil();
+
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+
+        })
+    });
+
+    //未背
+    $("#unMemorize").click(function () {
+        if(unFlag){
+            getWords(1,currUn);
+            currUn++;
+        }else{
+            $("#words>div").hide();
+            $(".unWordList").show();
+        }
+        wordsType = 1;
+        $(".showWordsBtn p").html("更 多");
+    });
+
+    //正在背
+    $("#memorizing").click(function () {
+        if(ingFlag){
+            getWords(2,currIng);
+            currIng++;
+            ingFlag = false;
+        }else{
+            $("#words>div").hide();
+            $(".wordingList").show();
+        }
+        wordsType = 2;
+
+    });
+
+    //已背
+    $("#memorized").click(function () {
+        if(edFlag){
+            getWords(3,currEd);
+            currEd++;
+            edFlag = false;
+        }else{
+            $("#words>div").hide();
+            $(".wordedList").show();
+        }
+        wordsType = 3;
+
+    });
+
+
+    //获取单词
+    function getWords(type,curr) {
+        let data = {curr:curr,size:30};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            data: data,
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/myWordbook/words/" +wordbookId+ "/"+type,
+            dataType: "json", //json类型
+            success: function(result) {
+                console.log(result);
+                let data;
+                if(result.code == 200){
+                    data = result.words;
+                }
+                if(type == 1){
+                    $("#words>div").hide();
+                    $(".unWordList").show();
+                    if(result.code == 504){
+                        $(".showWordsBtn p").html("已到底部");
+                        return ;
+                    }
+                    $.each(data,function (i,item) {
+                        $('.unWordList').append("<div class=\"wordBox\">\n" +
+                            "            <div class=\"col-xs-10 wordArea\">\n" +
+                            "                <p class=\"word\" title=\""+ item.word +"\">"+ item.word +"</p>\n" +
+                            "                <!--            将换行去除-->\n" +
+                            "                <p class=\"wordMean\">"+ item.paraphrase +"</p>\n" +
+                            "            </div>\n" +
+                            "\n" +
+                            "            <div class=\"col-xs-1 pronBox\" style=\"padding: 0 5px;\"><span title=\""+ item.word +"\" class=\"glyphicon glyphicon-volume-down pron\" > </span></div>\n" +
+                            "            <div class=\"col-xs-1 cutBox\" style=\"padding: 0 5px;\"><span title=\""+ item.id +"\" class=\"cutWord\" >斩</span></div>\n" +
+                            "            <div class=\"col-xs-12 word-line\"></div>\n" +
+                            "        </div>")
+                        })
+
+                    $(".showWordsBtn p").html("更 多");
+
+                }else if(type == 2){
+                    $("#words>div").hide();
+                    $(".wordingList").show();
+                    if(result.code == 504){
+                        $(".showWordsBtn p").html("已到底部");
+                        return ;
+                    }
+                    $.each(data,function (i,item) {
+                        $('.wordingList').append("<div class=\"wordBox\">\n" +
+                            "            <div class=\"col-xs-10 wordArea\">\n" +
+                            "                <p class=\"word\" title=\""+ item.word +"\">"+ item.word +"</p>\n" +
+                            "                <!--            将换行去除-->\n" +
+                            "                <p class=\"wordMean\">"+ item.paraphrase +"</p>\n" +
+                            "            </div>\n" +
+                            "\n" +
+                            "            <div class=\"col-xs-1 pronBox\" style=\"padding: 0 5px;\"><span title=\""+ item.word +"\" class=\"glyphicon glyphicon-volume-down pron\" > </span></div>\n" +
+                            "            <div class=\"col-xs-1 cutBox\" style=\"padding: 0 5px;\"><span title=\""+ item.id +"\" class=\"cutWord\" >斩</span></div>\n" +
+                            "            <div class=\"col-xs-12 word-line\"></div>\n" +
+                            "        </div>")
+                    });
+
+                    $(".showWordsBtn p").html("更 多");
+                }else if(type == 3){
+                    $("#words>div").hide();
+                    $(".wordedList").show();
+                    if(result.code == 504){
+                        $(".showWordsBtn p").html("已到底部");
+                        return ;
+                    }
+                    $.each(data,function (i,item) {
+                        $('.wordedList').append("<div class=\"wordBox\">\n" +
+                            "            <div class=\"col-xs-10 wordArea\">\n" +
+                            "                <p class=\"word\" title=\""+item.word+"\">"+item.word +"</p>\n" +
+                            "                <p class=\"wordMean\">"+item.paraphrase+"</p>\n" +
+                            "            </div>\n" +
+                            "            <div class=\"col-xs-1 pronBox\" style=\"padding: 0 5px;\"><span title=\""+item.word+"\" class=\"glyphicon glyphicon-volume-down pron\" > </span></div>\n" +
+                            "            <div class=\"col-xs-1 reLearnBox\" style=\"padding: 0 5px;\"><span title=\""+item.id+"\" class=\"reLearn glyphicon glyphicon-circle-arrow-left\" ></span></div>\n" +
+                            "\n" +
+                            "            <div class=\"col-xs-12 word-line\"></div>\n" +
+                            "        </div>")
+                    })
+                    $(".showWordsBtn p").html("更 多");
+                }
+                reloadUtil();
+
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+        })
+    }
+
+    $(".showWordsBtn").click(function () {
+        switch (wordsType) {
+            case 1: getWords(1,currUn);currUn++;break;
+            case 2: getWords(2,currIng);currIng++;break;
+            case 3: getWords(3,currEd);currEd++;break;
+        }
+    });
+</SCRIPT>

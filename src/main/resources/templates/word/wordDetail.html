@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单词详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/wordDetail.css">
+    <!--    滚动条js-->
+    <script src="/js/scrollbot.min.js"></script>
+</head>
+<body>
+
+<div class="container searchView" style="background-color: #dadada;">
+    <div class="row">
+        <div style="width: 100%;">
+            <span class="back"><img src="/img/back.png" alt="" style="width: 30px;height: 30px;" ></span>
+            <input type="text" id="wordInput" placeholder="search">
+<!--            <button id="searchBtn"><img src="../../static/img/search.png" alt="" style="width: 30px;height: 30px;"></button>-->
+        </div>
+    </div>
+
+</div>
+
+<div class="wordDetail" >
+
+    <!--单词-->
+    <div class="word_some">
+        <div class="container" style="background-color: #f3f3f3;">
+            <div class="row" >
+                <div class="col-md-10 col-xs-10" style="font-size: 22px"><p>coding</p></div>
+                <div class="col-md-1 col-xs-1">
+                    <span  class="collect glyphicon glyphicon-star-empty" onclick="showCollect();"></span>
+                    <!--                        生词本-->
+                    <div class="myNotebook" >
+                        <p style="font-size: 22px;color: #2B81AF;line-height: 38px"><i><b>加入生词本</b></i></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p ><span>加入了</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+                        <p><span>IT</span></p>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="pron">
+                <div class="row">
+                    <div class="col-md-10 col-xs-10">
+                        <p>英 [<span id="pron_uk">'kəʊdɪŋ</span>] <span class="glyphicon glyphicon-volume-down pron_uk_volume"></span></p>
+                        <audio id="soundUK" class="sound"  src="http://media.shanbay.com/audio/uk/coding.mp3"></audio>
+                        <p>美 [<span id="pron_us">'koʊdɪŋ</span>] <span class="glyphicon glyphicon-volume-down pron_us_volume"></span></p>
+                        <audio id="soundUS" class="sound"  src="http://media.shanbay.com/audio/us/coding.mp3"></audio>
+                    </div>
+                    <!--                        glyphicon glyphicon-volume-up-->
+
+                </div>
+                <!--                    单词所属分类-->
+                <div class="row classification">
+                    <div class="col-md-10 col-xs-10">
+                        <p id="wordTag">CET4/CET6/GRE/考研</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--释义-->
+    <div class="meaning" style="margin-top: 10px;">
+        <div class="container" style="background-color: #f3f3f3;">
+            <div class="row">
+                <div class="col-xs-10" style="font-weight: bold;font-size: 24px">常用释义</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10">n. 编码；译成电码<br>v. “code”的现在分词</div>
+                <div class="col-xs-10"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--例句-->
+    <div class="sentences" style="margin-top: 10px;">
+        <audio id="soundSen" style="height: 0;" src=""></audio>
+        <div class="container" style="background-color: #f3f3f3;">
+            <div class="row">
+                <div class=" col-xs-11" style="font-weight: bold;font-size: 24px">常用例句</div>
+
+            </div>
+
+            <div class="row sentence" id="1122">
+                <div class="col-xs-11 sentence_en">
+                    The merits of the system can be categorized as simple in coding,
+                    easy to implement, time-efficient and highly accurate.</div>
+                <br>
+                <div class="col-xs-11 sentence_cn">
+                    该系统编码简单，容易实现，并且在减少扫描时间及提高重建精度上，有较明显的优势。
+                    <span class="glyphicon glyphicon-volume-down sentencePron"></span>
+                </div>
+            </div>
+            <div class="row sentence">
+                <div class="col-xs-11 sentence_en">
+                    The complexity isn't in coding these tasks; it's fairly easy to do each of these things.</div>
+                <div class="col-xs-11 sentence_cn">
+                    复杂性并不在于编码这些任务；其中每件事都是相当容易的。
+                    <span class="glyphicon glyphicon-volume-down sentencePron"></span>
+                </div>
+            </div>
+
+            <div class="row sentence">
+                <div class="col-xs-11 sentence_en">
+                    Sophie Amundsen was on her way home from school.
+                    She had walked the first part of the way with Joanna.
+                    They had been discussing robots.
+                    Joanna thought the human brain was like an advanced computer.
+                    Sophie was not certain she agreed.
+                    Surely a person was more than a piece of hardware?
+                </div>
+                <div class="col-xs-11 sentence_cn">
+                    苏菲放学回家了。
+                    有一段路她和乔安同行，
+                    她们谈着有关机器人的问题。
+                    乔安认为人的脑子就像一部很先进的电脑，
+                    这点苏菲并不太赞同。
+                    她想：人应该不只是一台机器吧．
+                    <span class="glyphicon glyphicon-volume-down sentencePron"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 "><a href="#" style="display: block;text-align: center">more sentences...</a></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+
+</html>
+
+<script src="/jq/jquery.min.js"></script>
+<script src="/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+<script>
+    // 句子发音
+    $(".sentencePron").on('click',this,function () {
+        //bug，参数有限制,大概这么长
+        // "Sophie Amundsen was on her way home from school. She had walked the first part of the way with Joanna.
+        // They had been discussing robots. Joanna thought the human brain was like an advanced computer. Sophie"
+        let sentence = $(this).parent().parent().children('.sentence_en').html();
+        let src = "http://dict.youdao.com/dictvoice?audio="+sentence+"&type=2";
+        $("#soundSen").attr('src',src);
+        $("#soundSen")[0].play();
+    });
+</script>
+
+
+<script>
+
+    //点击英音
+    $(".pron_uk_volume").click(function () {
+        $("#soundUK")[0].play();
+
+    });
+
+    //点击美音
+    $(".pron_us_volume").click(function () {
+        $("#soundUS")[0].play();
+    });
+
+    //滚动框
+    let myNotebook;
+    let myNotebookFlag = false;
+
+    //点击收藏时触发
+    function showCollect() {
+        //未被收藏
+        if( $(".collect").hasClass("glyphicon-star-empty")){
+            //查询我的生词本
+            // $.ajax()
+            // 返回成功-》弹出生词本框
+            // $(".myNotebook").fadeIn(200);
+
+            $(".myNotebook").css("display","block");
+
+            //为display为none的元素添加
+            //滚动条美化
+            if(!myNotebookFlag){
+                myNotebook = new scrollbot(".myNotebook",10);
+                myNotebook.setStyle({
+                    "background":"#202020",
+                    "z-index":"2222",
+                    "height":"20px"
+                },{
+                    "background":"rgba(0,0,0,0)"
+                });
+
+                let psuedo = document.createElement("div");
+                psuedo.style.cssText = "height:100%;width:2px;left:4px;background:#808080;position:absolute;z-index:1";
+                //设置包裹滚动条的容器
+                myNotebook.scrollBarHolder.appendChild(psuedo);
+                myNotebookFlag = !myNotebookFlag;
+            }
+
+            // 在窗口尺寸改变时重新计算滚动条的位置。
+            document.onreadystatechange = function(){
+                myNotebook.refresh();
+            };
+
+
+            //显示样式
+            $(".collect").removeClass("glyphicon-star-empty").addClass("glyphicon-star");
+
+        }else{
+            $(".collect").addClass("glyphicon-star-empty").removeClass("glyphicon-star");
+            $(".myNotebook").css("display","none");
+        }
+    }
+
+    //收藏
+
+
+
+
+</script>
+<SCRIPT>
+    $(function () {
+        //收藏单词显示生词本
+        $("#showMyNotebooks").click(function () {
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                url: "/notebook/myNotebookJson",
+                dataType: "json", //json类型
+                success: function(result) {
+                    // var result = JSON.stringify(result);  // 需解析，否则返回 object
+                    console.log(result);
+
+                    if(result.code === 200){
+                        $("#notebookname").html(result.notebooks[0].name)
+                    }
+
+
+                },
+                error: function(errmsg) {
+                    console.log("Ajax获取服务器数据出错了！"+ errmsg);
+                }
+
+            })
+
+
+        })
+
+
+        //获取页面参数
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+
+
+        //测试
+        $("#text").html(getQueryVariable("word"));
+
+        //默认查询
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordect//findWordDetailJson/"+getQueryVariable("word"),
+            dataType: "json", //json类型
+            success: function(result) {
+                // var result = JSON.stringify(result);  // 需解析，否则返回 object
+                console.log(result)
+
+                if(result.code === 200){
+                    var definition = result.wordEctDetail.definition+"";
+                    definition =  definition.replace(/\\n/gi,"<br>");
+                    $("#text").html(definition);
+                }
+
+
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+
+        })
+
+        //添加生词本，前端还要判断是否有生词本名字重复，路径/notebook/addNotebook,参数Notebook类，其实就名字就行
+
+    })
+
+</SCRIPT>

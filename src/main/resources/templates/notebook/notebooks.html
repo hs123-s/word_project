@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生词本</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/notebooks.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body style="background-color: #efefef;">
+
+<div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1" style="cursor: pointer">
+            <p><span class="glyphicon glyphicon-menu-left"></span></p>
+        </div>
+        <div class="col-xs-8 col-md-8" style="position:relative;display:flex;justify-content: center;">
+
+            <div style="padding-left: 15px;"><p>我的生词本</p></div>
+
+            <!--            <p style="display: inline-block;position:relative;"><span></span> | <span></span></p>-->
+
+        </div>
+        <div class="gotoBookDetail col-xs-2 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+    </div>
+</div>
+<div style="height: 60px;"></div>
+
+
+<div class="container myNotebook">
+
+
+    <div class="row notebooks">
+<!--        <div class="col-xs-8" class="notebookArea" content="词书id">-->
+<!--            <div class="imgArea">-->
+<!--                <a href=""><img src="/img/notebook/notebooks.png" class="notebookImg"></a>-->
+<!--                <div class="notebookName"><p>信息技术</p></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-xs-2 editArea" content="123" >-->
+<!--            <span class="editNotebook glyphicon glyphicon-pencil"></span>-->
+<!--            <span class="deleteNotebook glyphicon glyphicon-trash"></span>-->
+<!--        </div>-->
+<!--        <div class="col-xs-12 line"></div>-->
+
+    </div>
+</div>
+
+<!--添加生词本-->
+<div class="container" style="display: flex;justify-content: center;">
+    <div class="addNotebook" data-toggle="modal" data-target="#addNotebook" data-whatever="@mdo" style="width: 70%"><p style="text-align:center;">添加生词本</p></div>
+</div>
+
+
+<!--创建生词本模态框 创建生词本-->
+<div class="modal fade" id="addNotebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">新建生词本</h4>
+            </div>
+            <div class="modal-body">
+                <form id="notebookForm" action="/notebook/addNotebook">
+                    <div class="form-group">
+                        <label for="notebookName" class="control-label">生词本名字:</label>
+                        <input type="text" class="form-control" id="notebookName" name="notebookName" maxlength="8">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button submit" class="btn btn-primary create">创建</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--删除生词本-->
+<div class="modal fade" id="deleteNotebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModal">是否删除该生词本？</h4>
+            </div>
+            <div class="modal-body">
+                <div>暂不提供此功能！</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button " class="btn btn-primary confirmDelete">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--修改生词本-->
+<div class="modal fade" id="editNotebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editNotebookModal">修改生词本</h4>
+            </div>
+            <div class="modal-body">
+                <form id="editNotebookForm" action="/notebook/editNotebook">
+                    <div class="form-group">
+                        <label for="notebookName" class="control-label">修改生词本名字:</label>
+                        <input type="text" class="form-control" id="Name" name="notebookName" maxlength="8" value="">
+<!--                        id-->
+                        <input type="text" class="id" name="id" value="" style="display: none;">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button " class="btn btn-primary confirmEdit">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--底部-->
+<div style="height: 100px;"></div>
+<!--    移动端显示此底部栏-->
+<footer class="footer navbar-fixed-bottom  visible-xs-block"
+        style="padding: 5px 0 0 0;">
+
+    <div class="bottomFuns" style="display: flex;justify-content:space-between;flex-grow: inherit;margin: 0;">
+
+        <div class="bottomFun">
+            <a href="/wordbook/gotoWordbook">
+                <p class="text-center font-18"><img src="/img/wordbook.png" style="height: 30px;" alt=""></p>
+                <p class="text-center font-14">词库</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="#">
+                <p class="text-center font-18"><img src="/img/notebookClicked.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">生词</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/">
+                <p class="text-center font-18"><img src="/img/index.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">首页</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/book/gotoShelf">
+                <p class="text-center font-18"><img src="/img/novel.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">小说</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/learner/profile">
+                <p class="text-center font-18"><img src="/img/mine.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">我的</p>
+            </a>
+        </div>
+    </div>
+
+</footer>
+</body>
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+<!--模态框 modal.js-->
+<script src="/bootstrap-3.3.7/js/modal.js"></script>
+<script>
+
+    //返回
+    $(".back").click(function () {
+        //回退
+        window.location.href = "/";
+    });
+
+    init();
+    function init(){
+        // 待处理生词本id
+        let id;
+        $('.deleteNotebook').on('click',this,function () {
+            // 获取生词本id
+            id = $(this).parent().attr('content');
+            $("#deleteNotebook").modal('show')
+        });
+
+        //暂不处理删除生词本操作
+        $('.confirmDelete').on('click',this,function () {
+            // 删除
+            // 参数：id
+            $("#deleteNotebook").modal('hide')
+        });
+
+        $('.editNotebook').on('click',this,function () {
+            // 删除
+            // 参数：id
+            id = $(this).attr("content");
+            $("#editNotebookForm .id").val(id);
+            $("#editNotebook").modal('show');
+        });
+    }
+
+</script>
+
+<script>
+
+    //创建
+    $(".create").click(function () {
+        $("#notebookForm").submit();
+    });
+
+    //删除
+
+    //修改
+    $(".confirmEdit").click(function () {
+        $("#editNotebookForm").submit();
+    });
+
+
+    $(function () {
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/notebook/myNotebookJson",
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result)
+                if(result.code === 200){
+
+                    $.each(result.notebooks,function (i,item) {
+
+                        let img = "/img/notebook/notebooks.png";
+                        // $(".notebooks").append("<a href='/notebook/gotoNoteDetail?id=" + item.id+ "');'>"+item.name+"</a><br>")
+                        $(".notebooks").append("<div class=\"col-xs-8\" class=\"notebookArea\">\n" +
+                            "            <div class=\"imgArea\">\n" +
+                            "                <a href=\"/notebook/gotoNoteDetail?id="+ item.id +"\">" +
+                            "                   <img src=\"/img/notebook/notebooks.png\" class=\"notebookImg\"></a>\n" +
+                            "                <div class=\"notebookName\"><p>" + item.name+  "</p></div>\n" +
+                            "            </div>\n" +
+                            "        </div>\n" +
+                            "        <div class=\"col-xs-2 editArea\" content=\""+ item.id +"\" >\n" +
+                            "            <span class=\"editNotebook glyphicon glyphicon-pencil\" content="+ item.id +"></span>\n" +
+                            "            <span class=\"deleteNotebook glyphicon glyphicon-trash\" content="+ item.id +"></span>\n" +
+                            "        </div>\n" +
+                            "        <div class=\"col-xs-12 line\"></div>")
+
+                    })
+                }
+                init();
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+
+            }
+        })
+    })
+
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h2>
+      很抱歉，您的账户在封禁中，请根据下面邮箱联系我们。
+  </h2>
+  <a href="https://mail.163.com" target="_blank" >1170782807@qq.com</a>
+</body>
+</html>
+<script type="text/javascript">
+    function TestAjax(){
+        $.ajax({
+            type: "POST",
+            async: false,     //异步执行
+            url: "/",   //SQL数据库文件
+            data: {},         //发送给数据库的数据
+            dataType: "json", //json类型
+            success: function(result) {
+                // console.log(result);
+                var result = JSON.stringify(result);  // 需解析，否则返回 object
+                console.log(result)
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+
+        })
+    }
+
+
+</script>

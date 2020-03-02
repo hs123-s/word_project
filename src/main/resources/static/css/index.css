@@ -1,0 +1,164 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+    box-shadow:none;
+}
+
+li{
+    text-decoration: none;
+}
+
+.bottomFun a{
+    list-style: none;
+}
+p{
+    font-size: 18px;
+    color: #223333;
+    font-family: "华文细黑";
+    font-weight: 700;
+}
+.font-14{
+    font-size: 14px;
+
+}
+
+.font-16{
+    font-size: 16px;
+
+}
+.font-18{
+    font-size: 18px;
+
+}
+.font-22{
+    font-size: 20px;
+
+}
+
+p>span{
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 1px;
+}
+.bottomFun{
+    cursor: pointer;
+    line-height: 14px;
+    padding: 0 20px;
+}
+.bottomFun p{
+    margin: 2px 0 4px;
+}
+.wordbook{
+    /*border: rgba(87, 128, 255, 0.69) 2px solid;*/
+    box-shadow: rgb(34, 51, 51) 0px 5px 5px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.gotoWordBtn,.gotoReviewBtn{
+    background-color: rgba(101, 176, 255, 0.36);
+    height:40px;
+    line-height: 40px;
+    border-radius: 10px;
+    box-shadow: rgb(34, 51, 51) 0px 5px 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.gotoReviewBtn{
+    background-color: rgba(79, 171, 56, 0.36);
+}
+.gotoWordBtn:hover{
+    background-color: rgba(104, 207, 255, 0.36);
+
+}
+.gotoReviewBtn:hover{
+    background-color: rgba(165, 255, 116, 0.36);
+
+}
+
+
+#searchWord {
+
+    /*-web-kit-appearance: none;*/
+    /*-moz-appearance: none;*/
+    /*font-size: 20px;*/
+    /*height: 100%;*/
+    /*border-radius: 4px 0 0 4px;*/
+    /*border: 1px solid #c8cccf;*/
+    /*color: #6a6f77;*/
+    /*padding-left: 10px;*/
+    /*outline-style: none;*/
+    width: 80%;
+    height: 40px;
+    padding-left: 5px;
+    margin-left: 2%;
+    background: none;
+    outline: none;
+    border: 1px solid transparent;
+    font-size: 20px;
+    border-bottom: 1px solid #515151;
+
+}
+
+#searchWord:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-transition:border linear .1s,-webkit-box-shadow linear .2s;
+    border-color: rgba(112, 136, 142, 0.75);
+    -webkit-box-shadow: inset 0 8px 8px rgba(0,0,0,.075),0 0 16px rgba(102,175,233,.6);
+    box-shadow: inset 0 8px 8px rgba(0,0,0,.075),0 0 16px rgba(102,175,233,.6)
+}
+
+#searchBtn{
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    outline: none;
+    border:0;
+    border-radius: 25%;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 2px #000000;
+}
+
+#edit{
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px black solid;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: transparent;
+}
+#edit:hover{
+    background-color: #fffed4;
+}
+
+
+#tips{
+    position: absolute;
+    left: 0;
+    top: 46px;
+    width: 100%;
+    border-radius: 15px 5px 15px 15px;
+    border: #bfbfbf solid 1px;
+    background-color: #ffffff;
+    z-index: 10;
+    padding-left: 10px;
+    display: none;
+    font-size: 16px;
+
+}
+
+#tips>table{
+    cursor: pointer;
+    font-size: 16px;
+    color: #6a6a6a;
+}

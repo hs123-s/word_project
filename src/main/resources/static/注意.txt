@@ -1,0 +1,2 @@
+jdbc:mysql://localhost:3306/words?useSSL=false&serverTimezone=UTC
+idea的mysql驱动后面要加上ServerTimeZone=UTC

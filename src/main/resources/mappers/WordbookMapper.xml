@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ahuiali.word.mapper.WordbookMapper">
+    <select id="findAllWordbook" resultType="com.ahuiali.word.pojo.Wordbook">
+        select id, name, count, img from wordbook;
+    </select>
+
+
+<!--    <select id="findMyWordbooks" resultType="wordbook">-->
+<!--        select w.name,w.summary,lw.learned_count as count ,lw.is_memorizing from learner_wordbook lw, wordbook w-->
+<!--            where lw.learner_id =  #{learnerId} and  lw.wordbook_id = w.id;-->
+<!--    </select>-->
+
+
+</mapper>

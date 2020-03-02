@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head style="height: 100%;">
+    <meta charset="UTF-8">
+    <title>naive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <style>
+        body{
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body style="height: 100%;">
+
+
+
+
+<!--顶部-->
+
+<!--导航条-->
+<nav class="navbar navbar-default  hidden-xs" style="margin-bottom: 10px;">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="padding: 0;margin: 0;">
+                <img src="/img/logo/logo200.svg" alt="" style="height: 100%;">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" >
+            <ul class="nav navbar-nav">
+                <li><a href="/wordbook/gotoWordbook"><span class="glyphicon glyphicon-list-alt"></span> 词书 </a></li>
+                <li><a href="/notebook/gotoNotebook"><span class="glyphicon glyphicon-file"> </span> 生词本</a></li>
+                <li><a href="/book/gotoShelf"><span class="glyphicon glyphicon-book"></span> 小说 </a></li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">欢迎：ahui</a></li>
+<!--                <li><a href="#">登录 <span class="glyphicon glyphicon-log-in"></span></a></li>-->
+<!--                <li><a href="#">注册 <span class="glyphicon glyphicon-registration-mark"></span></a></li>-->
+<!--                <li><a href="#">退出登录 <span class="glyphicon glyphicon-log-out"></span></a></li>-->
+                <li><a href="/learner/profile">我的 <span class="glyphicon glyphicon-user"></span></a></li>
+            </ul>
+
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<!--主页内容-->
+<div class="index">
+    <div class="visible-sm-block visible-xs-block" style="height: 15px;"></div>
+
+    <!--搜索框-->
+    <div class="row" style="margin: 0">
+        <div class="col-md-6 col-xs-10 col-md-offset-3  col-xs-offset-1" >
+            <div  style="display:flex;justify-content: center;position:relative;;">
+
+                <input id="searchWord"  type="text" placeholder="search word..." class="" >
+                <!--提示框-->
+                <button id="searchBtn" style="display: inline-block"><img src="/img/search.png" alt="" style="width: 30px;height: 30px;"></button>
+                <div id="tips">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <td>apple</td>
+                            <td class="text-right">n.苹果</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex;justify-content: center"><img src="/img/logo/logo200.svg" alt="" ></div>
+
+
+    <!--词书-->
+    <div class="row" style="margin: 0;" >
+        <div class=" col-md-6 col-xs-10 col-md-offset-3  col-xs-offset-1 ">
+            <div class="wordbook" style="padding-top: 20px">
+                <p class="font-22 text-center" style="font-weight: bold;line-height: 150%;margin-bottom: 5px">正在背：</p> <!--(你还没选择词书)-->
+                <div style="width: 80%;height: 1px;background-color: #919191;margin:0 0 2% 10%;"></div>
+                <div class="row">
+                    <!--<div class="col-xs-1 col-md-1 col-xs-1"></div>-->
+                    <div class="col-xs-8 col-md-8 col-xs-8">
+                        <a href="" class="wordbookHref"><p class="text-center" id="wordbookName" style="font-size: 20px;line-height: 24px;">宁还没选择词书</p></a>
+                    </div>
+
+                    <div class="col-xs-4 col-md-4 col-xs-4">
+                        <span id="edit" >修改</span>
+                    </div>
+                </div>
+
+                <!--分割线-->
+                <div style="width: 80%;height: 1px;background-color: #919191;margin:0 0 2% 10%;"></div>
+
+
+                <div class="row">
+                    <div class="col-xs-1 col-md-1 col-xs-1"></div>
+                    <div class="col-xs-4 col-md-4 col-xs-4">
+                        <p class="text-center font-22">需复习</p>
+                    </div>
+                    <div class="col-xs-2 col-md-2 col-xs-2"></div>
+                    <div class="col-xs-4 col-md-4 col-xs-4">
+                        <p class="text-center font-22" id="reviewCount">0个</p>
+                    </div>
+                    <div class="col-xs-1 col-md-1 col-xs-1"></div>
+                </div>
+                <!--进度条-->
+                <div class="row">
+                    <div class="col-xs-1 col-md-1 "></div>
+                    <div class="col-md-10 col-xs-10">
+                        <div class="progress" >
+                            <div class="progress-bar progress-bar-striped active" id="wordProgress"
+                                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="color: black;width: 0%">
+                                    0/0
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2 col-xs-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 100%;height: 20px;"></div>
+
+    <!--背词按钮-->
+    <div class="row" style="margin: 0">
+        <div class="col-md-6 col-xs-10 col-md-offset-3 col-xs-offset-1">
+            <div class="row">
+                <div class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1 gotoWordBtn">
+                    <p class="text-center" style="font-size: 22px" onclick="memorize();"> 去 背 词 </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--复习按钮-->
+    <div class="row" style="margin: 0">
+        <div class="col-md-6 col-xs-10 col-md-offset-3 col-xs-offset-1">
+            <div class="row">
+                <div class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1 gotoReviewBtn">
+                    <p class="text-center" style="font-size: 22px" onclick="review();"> 去 复 习 </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--分隔-->
+    <div style="width: 100%;height: 100px"></div>
+
+<!--    移动端显示此底部栏-->
+    <footer class="footer navbar-fixed-bottom  visible-xs-block"
+            style="padding: 5px 0 0 0;background-color: #dadada;">
+
+        <div class="bottomFuns" style="display: flex;justify-content:space-between;flex-grow: inherit;margin: 0;">
+
+            <div class="bottomFun">
+                <a href="/wordbook/gotoWordbook">
+                    <p class="text-center font-18"><img src="/img/wordbook.png" style="height: 30px;" alt=""></p>
+                    <p class="text-center font-14">词库</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/notebook/gotoNotebook">
+                    <p class="text-center font-18"><img src="/img/notebook.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">生词</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/">
+                    <p class="text-center font-18"><img src="/img/indexClicked.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">首页</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/book/gotoShelf">
+                    <p class="text-center font-18"><img src="/img/novel.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">小说</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/learner/profile">
+                    <p class="text-center font-18"><img src="/img/mine.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">我的</p>
+                </a>
+            </div>
+        </div>
+
+    </footer>
+
+<!--    网页所有权-->
+<!--    由于主页内容少，撑不起，所以只能用fixed弄，如果用盒子撑开，移动端又会有问题，等下一版本再搞吧。👴被整懵了-->
+    <footer class="footer hidden-xs hidden-sm" style="text-align: center;width: 100%;position:fixed;bottom: 20px;">
+        <p style="font-size: 14px;font-weight: normal;font-family: 'Arial'">Copyright © 2019 ZCH. All rights reserved.</p>
+    </footer>
+</div>
+
+</body>
+<script src="/jq/jquery.min.js"></script>
+<script src="/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+<SCRIPT>
+
+    let wordbookId;
+    //初始化
+    $(function () {
+        $.ajax({
+
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/index",
+            dataType: "json", //json类型
+            success: function(result) {
+                console.log(result);
+                if(result.code == 200){
+                    let wordbook = result.wordbook;
+                    wordbookId = wordbook.id;
+                    let href = "/wordbook/gotoMyWordbookDetail?id=" + wordbook.id;
+                    $(".wordbookHref").attr('href',href);
+                    $("#wordbookName").html(wordbook.name);
+                    $("#reviewCount").html(wordbook.review_count);
+                    $("#wordProgress").html(wordbook.learned_count+"/"+wordbook.count);
+
+                    $("#wordProgress").css("width",((wordbook.learned_count/wordbook.count)*100)+"%");
+                }
+
+            },
+            error: function(errmsg) {
+                console.log("Ajax获取服务器数据出错了！"+ errmsg);
+            }
+        })
+    })
+</SCRIPT>
+
+<script>
+    var sentence_en = $("#sentence_en").html();
+
+    //点击修改跳转至我的词书界面
+    $("#edit").click(function () {
+       window.location.href = "/wordbook/gotoMyWordbooks";
+    });
+
+    //鼠标移至单词时的效果
+    $("p>span").mousemove(function (e) {
+        $(this).css("background","#233");
+        $(this).css("color","#fff");
+    });
+    $("p>span").mouseout(function (e) {
+        $(this).css("background","transparent");
+        $(this).css("color","#000");
+    });
+    $("p>span").click(function (e) {
+        alert($(this).html())
+
+        //向后端查询或者调用金山接口
+        //代码。。。
+    });
+    let str = "Truth's needs no color; beauty, no pencil.";
+    let strReg = str.replace(/([A-z]+)/gi,'<span>$1</span>');
+    console.log(strReg)//mm  上面那段$2这个就是表示正则第二组个匹配到的内容
+
+    //获取焦点即跳转
+    // $("#searchWord").focus(function () {
+    //     window.location.href = "/wordect/gotoSearch";
+    // })
+
+    //输入提示框(*)
+    $("#searchWord").keyup(function (event) {
+        // let word = $("#searchWord").val();
+        // console.log(word);
+        //
+        // if(!(word=="")){
+        //     $("#tips").fadeIn("normal");
+        //
+        // }else{
+        //     $("#tips").fadeOut("normal");
+        //
+        // }
+    });
+
+    // 背单词跳转
+    function memorize() {
+
+
+        window.location.href = "/words/goto?wordbook_id="+wordbookId;
+
+        //向后端发送跳转请求，权限拦截，查询复习和待背词汇并将其返回，然后跳转至背词页面
+    }
+
+    //复习跳转
+    function review() {
+        window.location.href = "/wordbook/gotoReview?wordbook_id="+wordbookId;
+    }
+
+    //单词搜索
+    $("#searchBtn").click(function () {
+        window.location.href="/wordect/gotoWordDetail?word="+ $("#searchWord").val();
+    })
+</script>
+
+</html>

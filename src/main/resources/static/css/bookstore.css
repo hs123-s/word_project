@@ -1,0 +1,262 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    height: 50px;
+    padding: 5px 15px 5px 15px;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+}
+.topTab .row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+.topTab span{
+    width: 80%;
+}
+.topTab .back{
+
+}
+.topTab a{
+    text-decoration: none;
+    color: #000;
+}
+.topTab {
+    text-align: center;
+}
+.topTab  p{
+    font-size: 18px;
+    margin: 0;
+    /*padding: 0 0 0 15px;*/
+    padding: 0;
+    cursor: pointer;
+
+}
+.topTab  p:hover{
+    background-color: rgba(60, 60, 60, 0.51);
+}
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: #f7f7f7;
+
+}
+
+.searchBox .container{
+    padding: 0 10%;
+}
+
+.searchBox .search{
+    /*background-color: #fff;*/
+    width: 100%;
+    height: 30px;
+    /*padding: 0 2px;*/
+    padding: 0 10px;
+    /*background: none;*/
+    outline: none;
+    border: 1px solid transparent;
+    font-size: 18px;
+    box-shadow: inset 0 8px 8px rgba(0,0,0,.075),0 0 16px rgba(166, 184, 233, 0.6);
+    /*border-bottom: 1px solid #515151;*/
+    /*margin:  0 20%;*/
+    background: url('/img/search.png') #fff right 10px bottom 5px no-repeat ;
+    background-size: 20px;
+    border-radius: 5px;
+}
+
+
+.searchBox .search:hover{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-transition:border linear .1s,-webkit-box-shadow linear .2s;
+    border-color: rgba(112, 136, 142, 0.75);
+    -webkit-box-shadow: inset 0 8px 8px rgba(0,0,0,.075),0 0 16px rgba(102,175,233,.6);
+    box-shadow: inset 0 8px 8px rgba(0,0,0,.075),0 0 16px rgba(102,175,233,.6)
+}
+
+
+
+.tagBooks , .hotbooks{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hotbooks .book,.tagBooks .book{
+    width: calc(100% / 3 - 10%);
+    margin: 5% 5% 0 5%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 5px 5px 5px #000;
+    background-color: transparent;
+    -moz-border-radius: 7%;
+    -webkit-border-radius: 7%;
+    border-radius: 7%;
+
+}
+.hotbooks .book .bookNameBox,.tagBooks .book .bookNameBox{
+    width: 100%;
+    padding: 5px;
+    position: absolute;
+    bottom: 5%;
+    background-color: rgba(0, 0, 0, 0.5);
+    max-height: 80px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+.hotbooks .book img,.tagBooks .book img{
+    width: 100%;
+    border-radius: 7%;
+
+
+}
+.hotbooks .book .bookNameBox p,.tagBooks .book .bookNameBox p{
+    text-align: center;
+    font-size: 12px;
+    line-height: 14px;
+    font-family: "华文细黑";
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    color: whitesmoke;
+    pointer-events: none;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...*/
+}
+
+.tags{
+    width: 100%;
+    padding: 0 5% 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+}
+
+.tags .hotTags{
+    background-color: #ff9444;
+    box-shadow: 2px 2px 2px rgba(60, 60, 60, 0.41);
+}
+
+.tags .hotTags:hover,.tags selectTag{
+    background-color: #ffb04e;
+}
+.tags .hotTagsActive{
+    background-color: #ffb04e;
+    pointer-events: none;
+}
+
+.tags>div{
+    width: 25%;
+    margin:  0 2%;
+    background-color: #3c3c3c;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(60, 60, 60, 0.41);
+    cursor: pointer;
+    /*background-color: #233;*/
+
+}
+
+.tags>div p{
+    text-align: center;
+    font-size: 14px;
+    line-height: 100%;
+    margin: 0;
+    padding: 4px;
+    font-family: "华文细黑";
+    font-weight: bold;
+
+}
+
+.tags>.selectTag{
+    position: relative;
+    cursor: pointer;
+    /*display: none;*/
+}
+
+.tags>.selectTag select{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font-family: "华文细黑";
+    text-align: center;
+    text-align-last: center;
+    background-color: #ff9444;
+    font-weight: bold;
+    appearance: none;
+    /*box-shadow: inset 0 0 3px #606060;*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /*font-size: 20px;*/
+}
+.tags>.selectTag select:hover{
+    background-color: #ffb04e;
+}
+.tags>.selectTag select option{
+    font-size: 14px;
+    text-align: center;
+    text-align-last: center;
+    background-color: #FFFAFA;
+    border-radius: 7px;
+}
+
+
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    .hotbooks .book .bookNameBox p,.tagBooks .book .bookNameBox p, .tags>div p,.tags>.selectTag select,.tags>.selectTag select option{
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .topTab  p{
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    .hotbooks .book .bookNameBox  p,.tagBooks .book .bookNameBox  p, .tags>div p,.tags>.selectTag select,.tags>.selectTag select option{
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .tags{
+        padding: 0 15% 20px;
+    }
+    .searchBox .container{
+        padding: 0 15%;
+    }
+    .topTab  p{
+        font-size: 24px;
+        line-height: 40px;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    .tags{
+        padding: 0 20% 20px;
+    }
+    .searchBox .container{
+        padding: 0 20%;
+    }
+
+}
+
+

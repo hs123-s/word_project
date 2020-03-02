@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的词书</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/myWordbooks.css">
+    <link rel="stylesheet" href="/css/toptab.css">
+    <!--    底部样式-->
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body style="background-color: #dadada;">
+
+    <div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1 " style="cursor: pointer">
+            <p><span class="glyphicon glyphicon-menu-left"></span></p>
+        </div>
+        <div class=" col-xs-8 col-md-8" style="position:relative;display:flex;justify-content: center;">
+            <div style="padding-left: 15px;">
+                <a href="/wordbook/gotoWordbook"><p >词库 </p></a>
+            </div>
+            <div>&nbsp;|&nbsp;</div>
+            <div style="position:relative;">
+                <p  style="font-weight: 700;">我的</p>
+                <div class="tabBlock" style="position:absolute;width: 15px;height: 4px;background-color:#233333;bottom: 2px;right: 8px;"></div>
+
+            </div>
+            <!--            <p style="display: inline-block;position:relative;"><span></span> | <span></span></p>-->
+
+        </div>
+        <div class="gotoBookDetail col-xs-2 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+    </div>
+</div>
+    <div style="height: 60px;"></div>
+
+
+    <div class="container myWordbook">
+
+        <div class="row myMemorizingWordbook">
+            <div class="col-xs-12"><p >正在背</p></div>
+<!--            <div class="col-xs-8" class="wordbookArea" title="111">-->
+<!--                <div class="imgArea">-->
+<!--                    <img src="/img/wordbook/cet4core.jpg" alt="" class="wordbookImg">-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+
+        <div class="row otherWordbooks">
+            <div class="col-xs-12"><p >其他</p></div>
+
+<!--            <div class="col-xs-8" class="wordbookArea" content="词书id">-->
+<!--                <div class="imgArea">-->
+<!--                    <img src="/img/wordbook/cet6.jpg" alt="" class="wordbookImg">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-xs-3 planBtn" content="词书id">-->
+<!--                <span>设为计划</span>-->
+<!--            </div>-->
+
+
+        </div>
+    </div>
+
+    <!--底部-->
+    <div style="height: 70px;"></div>
+    <!--    移动端显示此底部栏-->
+    <!--    移动端显示此底部栏-->
+    <footer class="footer navbar-fixed-bottom  visible-xs-block"
+            style="padding: 5px 0 0 0;">
+
+        <div class="bottomFuns" style="display: flex;justify-content:space-between;flex-grow: inherit;margin: 0;">
+
+            <div class="bottomFun">
+
+                    <p class="text-center font-18"><img src="/img/wordbookClicked.png" style="height: 30px;" alt=""></p>
+                    <p class="text-center font-14">词库</p>
+
+            </div>
+            <div class="bottomFun">
+                <a href="/notebook/gotoNotebook">
+                    <p class="text-center font-18"><img src="/img/notebook.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">生词</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/">
+                    <p class="text-center font-18"><img src="/img/index.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">首页</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/book/gotoShelf">
+                    <p class="text-center font-18"><img src="/img/novel.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">小说</p>
+                </a>
+            </div>
+            <div class="bottomFun">
+                <a href="/learner/profile">
+                    <p class="text-center font-18"><img src="/img/mine.png" style="height: 30px" alt=""></p>
+                    <p class="text-center font-14">我的</p>
+                </a>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+
+<script>
+
+
+
+
+
+    $(function () {
+        //加载我的词书
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/myWordbooks",
+            dataType: "json", //json类型
+            success: function (result) {
+                if(result.code === 200){
+                    console.log(result)
+                    $.each(result.wordbooks,function (i,item) {
+                        // $("#myWordbooks").append("<a href='/wordbook/gotoMyWordbookDetail?id=" + item.id+ "');'>"+item.name+"</a><br>")
+                        //如果是当前计划
+                        if(item.is_memorizing == 1){
+                            $(".myMemorizingWordbook").append("<div class=\"col-xs-8\" class=\"wordbookArea\" title=\""+ item.id +"\">\n" +
+                                "                <div class=\"imgArea\">\n" +
+                                "                    <a href='/wordbook/gotoMyWordbookDetail?id="+ item.id +"'><img src=\""+ item.img +"\" alt=\"\" class=\"wordbookImg\"></a>\n" +
+                                "                </div>\n" +
+                                "            </div>")
+                        }else{
+                            //以前记录
+                            $(".otherWordbooks").append("<div class=\"col-xs-8\" class=\"wordbookArea\" content=\""+ item.id +"\">\n" +
+                                "                <div class=\"imgArea\">\n" +
+                                "                    <a href='/wordbook/gotoMyWordbookDetail?id="+ item.id +"'><img src=\"" + item.img + "\" alt=\"\" class=\"wordbookImg\"></a>\n" +
+                                "                </div>\n" +
+                                "            </div>\n" +
+                                "            <div class=\"col-xs-3 planBtn\" content=\""+ item.id +"\">\n" +
+                                "                <a href='/wordbook/changeWordbook/"+ item.id +"'><span>设为计划</span></a>\n" +
+                                "            </div>")
+                        }
+                    })
+
+                    //设为计划:重定向。先去后台，再重定向
+                    $(".planBtn").on('click',this,function () {
+                        //获取当前的计划词书
+                        console.log(this)
+                        let id = $(this).attr("content");
+                    });
+
+                }
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+
+            }
+        })
+
+
+
+
+        ////跳转至词库
+        $(".addBtn").on('click',this,function () {
+
+            console.log(this)
+        });
+    })
+
+    //返回
+    $(".back").click(function () {
+        //回退
+        window.location.href = "/";
+    })
+</script>

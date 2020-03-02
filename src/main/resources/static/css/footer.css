@@ -1,0 +1,19 @@
+.footer{
+    background-color: #dadada;
+    padding: 5px 0 0 0;
+    z-index: 999;
+}
+
+.bottomFun{
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 0 20px;
+}
+.bottomFun p{
+    margin: 2px 0 4px;
+}
+.bottomFun a{
+    text-decoration: none;
+    color: #0f0f0f;
+}

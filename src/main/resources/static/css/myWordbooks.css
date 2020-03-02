@@ -1,0 +1,84 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.myWordbook .row{
+    background-color: #FFFFFF;
+    /*固定风格*/
+    margin: 0 -10px 0 -10px;
+    /*margin: 10px;*/
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(34, 51, 51, 0.29);
+}
+.myWordbook .row p{
+    margin: 10px 0 0 10px;
+    font-size: 16px;
+    line-height: 180%;
+    padding: 5px;
+    font-weight: 700;
+}
+ .wordbookImg{
+    width: 40%;
+    margin: 10px;
+}
+.myWordbook .otherWordbooks .imgArea{
+    border-bottom: 2px solid rgba(34, 51, 51, 0.47);
+}
+
+.myWordbook .otherWordbooks{
+    margin-top: 10px;
+}
+
+.myWordbook .addBtn, .myWordbook .planBtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+    font-weight: bold;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: rgba(92, 184, 255, 0.59);
+    padding: 1%;
+    color: #fff;
+    box-shadow:  0 3px 3px #223333;
+    cursor: pointer;
+}
+
+.myWordbook .addBtn:hover, .myWordbook .planBtn:hover{
+    background-color: #60d1ff;
+
+}
+
+a{
+    color: #000;
+    text-decoration: none;
+}
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    .myWordbook .row  p{
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .topTab  p{
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    .myWordbook .row  p{
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .topTab  p{
+        font-size: 24px;
+        line-height: 40px;
+    }
+}

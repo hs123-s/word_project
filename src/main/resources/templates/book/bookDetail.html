@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bookDetail.css">
+    <link rel="stylesheet" href="/css/dropload.css">
+</head>
+<body style="background-color: #dadada;">
+<!--<button id="chaptersBtn">章节</button>-->
+    <div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1 " style="cursor: pointer">
+            <p><span class="glyphicon glyphicon-menu-left"></span></p>
+        </div>
+        <div class="bookName col-xs-8 col-md-8"><p class="title"></p></div>
+        <div class="gotoBookDetail col-xs-2 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+    </div>
+</div>
+<!--    书籍信息区-->
+    <div class="container myBookBox">
+        <div class="row myBook">
+            <div class="bookImg col-md-4 col-sm-4 col-lg-4 col-xs-4" id="书籍的id">
+                <img class="img" src="" >
+            </div>
+            <div class="bookInfo col-sm-8 col-md-8 col-lg-8 col-xs-8">
+                <p class="title"></p>
+                <p class="author" style=""></p>
+                <!--        加入书架按钮-->
+            </div>
+
+        </div>
+        <div class="col-xs-offset-8 addBookBtn" style="margin-top: 10px;">
+            <span class="addOrRemoveBook" content="add">加入书架 +</span>
+        </div>
+
+    </div>
+
+<!--    tab栏-->
+    <div class="container bookTab" >
+        <div class="row bookTabBox" style="display:flex;justify-content: center;">
+            <div class="summaryTab">
+                简介
+                <div class="summaryTabBlock" style="width: 30%;height: 4px;background-color: #233;position:absolute;left: 35%;padding: 0;"></div>
+            </div>
+            <div> | </div>
+            <div class="chapterTab">
+                章节
+                <div class="chapterTabBlock" style="width: 30%;height: 4px;background-color: #233;position:absolute;left: 35%;padding: 0;display: none"></div>
+            </div>
+        </div>
+
+    </div>
+
+<!--书籍简介-->
+    <div class="container summaryBox" style="margin-bottom: 80px;">
+        <div class="row summary">
+
+        </div>
+
+    </div>
+<!--    阅读按钮-->
+    <div class="container" style="display: flex;justify-content: center;">
+        <div class="readBtn" style="width: 70%">
+            <a href="#" class="gotoRead" style="text-decoration:none;">
+                <p style="text-align:center;">立即阅读</p>
+            </a>
+        </div>
+    </div>
+<!--章节-->
+<div class="container chaptersBox" >
+    <div class="row chapters" style="">
+        <ul id="chaptersList">
+<!--            <li><a href="#">第一章: 镜子屋</a></li>-->
+
+        </ul>
+    </div>
+</div>
+
+<!--提示框，提示加入或移除书籍信息-->
+<div class="tipBox" >
+
+</div>
+
+<div class="content">
+    <div class="lists"></div>
+</div>
+</body>
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+<script src="/js/dropload.min.js"></script>
+
+<!--下拉刷新（*）-->
+<script>
+    // 下拉刷新
+    //
+    // var page = 0;// 页数
+    // var size = 1;// 每页展示5个
+    // $('.chaptersBox').dropload({
+    //
+    //     scrollArea : this,
+    //     loadDownFn : function(me){
+    //         page++;
+    //         // 拼接HTML
+    //         var result = new Array(100);
+    //         $.ajax({
+    //             type: 'GET',
+    //             url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
+    //             dataType: 'json',
+    //             success: function(data){
+    //
+    //                 var arrLen = data.length;
+    //                 if(arrLen > 0){
+    //                     for(var i=0; i<arrLen; i++){
+    //                         result[i] =   data[i].title;
+    //                     }
+    //
+    //                     // 如果没有数据
+    //                 }else{
+    //                     me.lock();  // 锁定
+    //                     me.noData();    // 无数据
+    //                 }
+    //                 // 为了测试，延迟1秒加载
+    //                 for(var i=0; i<result.length; i++){
+    //                     setTimeout(function(){
+    //                         $('#chaptersList').append('<li><a href="#">第一章: '+ result[i] +'</a></li>'); // 插入数据到页面，放到最后面
+    //                         me.resetload(); // 每次数据插入，必须重置
+    //                     },3000);
+    //
+    //                 }
+    //
+    //             },
+    //             error: function(xhr, type){
+    //                 alert('Ajax error!');
+    //                 me.resetload(); // 即使加载出错，也得重置
+    //             }
+    //         });
+    //     }
+    // });
+
+</script>
+
+<script>
+
+    //书籍
+    let index_book = getQueryVariable("index_book");
+
+    //返回
+    $(".back").click(function () {
+        //回退
+        window.location.href = '/book/gotoBookStore';
+    });
+
+    //加入书架/移除
+    $(".addBookBtn").click(function () {
+       let a = $(".addOrRemoveBook").attr("content");
+       if("add" == a){
+           //添加该书籍
+           $.ajax({
+               type: "post",
+               async: true,     //异步执行
+               contentType: "application/json;charset=UTF-8",
+               url: "/book/addBook/"+index_book,
+               dataType: "json", //json类型
+               success: function (result) {
+                   if(result.code == 200){
+                       $('.addOrRemoveBook').html("移除书架");
+                       $(".addOrRemoveBook").attr("content","remove");
+                       $(".tipBox").html("已加入书架！");
+                       $(".tipBox").show();
+                       $(".tipBox").fadeOut(2000);
+                   }else {
+                       console.log(result)
+                   }
+
+
+
+               },
+               error: function (errmsg) {
+                   console.log("Ajax获取服务器数据出错了！" + errmsg);
+               }
+           })
+
+       }else if("remove" == a){
+           //移除该书籍
+           $.ajax({
+               type: "post",
+               async: true,     //异步执行
+               contentType: "application/json;charset=UTF-8",
+               url: "/book/remove/"+index_book,
+               dataType: "json", //json类型
+               success: function (result) {
+                   if(result.code == 200){
+                       $('.addOrRemoveBook').html("加入书架");
+                       $(".addOrRemoveBook").attr("content","add");
+                       $(".tipBox").html("已从书架移除！");
+                       $(".tipBox").show();
+                       $(".tipBox").fadeOut(2000);
+                   }else {
+                       console.log(result)
+                   }
+
+
+
+               },
+               error: function (errmsg) {
+                   console.log("Ajax获取服务器数据出错了！" + errmsg);
+               }
+           })
+
+       }
+    });
+
+
+    //简介方法
+    $(".summaryTab").click(function () {
+        $(".summaryBox").show("normal");
+        $(".summaryTabBlock").show("normal");
+        $(".chaptersBox").hide("normal");
+        $(".chapterTabBlock").hide("normal")
+    })
+
+    //是否已经加载章节列表
+    let chapterFlag = false;
+    let curr = 1;
+    //显示章节
+    $(".chapterTab").click(function () {
+        $(".chaptersBox").show("normal");
+        $(".chapterTabBlock").show("normal");
+        $(".summaryTabBlock").hide("normal");
+        $(".summaryBox").hide("normal");
+
+
+        //判断之前是否已经加载过
+        if(!chapterFlag){
+            //默认全部加载，因为没有书籍成功100章节，下拉刷新等以后再做
+            let data = {curr:curr,size:100};
+            data = JSON.stringify(data);
+            $.ajax({
+                type: "post",
+                async: true,     //异步执行
+                contentType: "application/json;charset=UTF-8",
+                data: data,
+                url: "/book/mybook/chapters/"+index_book,
+                dataType: "json", //json类型
+                success: function (result) {
+                    console.log(result);
+                    if(result.code === 200){
+                        curr++;
+                        $.each(result.chapters,function (i,item) {
+                            // $("#chaptersList").append("<a href='/book/gotoRead?chapter_index="+ item.chapter_index+"'>"+item.chapter_name+"</a><br>")
+                            $("#chaptersList")
+                                .append("<li><a href=\"/book/gotoRead?chapter_index="+ item.chapter_index +"&from=store\">"+ item.chapter_name +"</a></li>")
+                        })
+                    }
+                },
+                error: function (errmsg) {
+                    console.log("Ajax获取服务器数据出错了！" + errmsg);
+                }
+            })
+
+            chapterFlag = !chapterFlag;
+        }
+
+
+        // $(".chaptersBox").toggle("normal");
+        // $(".summaryBox").toggle("normal");
+    })
+
+    //init
+    $(function () {
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/book/bookDetail/"+index_book,
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result);
+
+                if(result.code == 200){
+                    let book = result.book;
+                    let href = "/book/gotoRead?chapter_index="+(book.index_book*10000+1)+"&from=store";
+                    //lastest_loc有值说明用户已经加入的
+                    // console.log(typeof book.lastest_loc)
+                    if(book.lastest_loc != null && book.lastest_loc != "" && book.lastest_loc != undefined){
+                        $('.addOrRemoveBook').html("移除书架");
+                        $(".addOrRemoveBook").attr("content","remove");
+                        $(".gotoRead p").html("继续阅读");
+                        href = "/book/gotoRead?last_loc=" + book.lastest_loc+"&from=shelf";
+                    }
+
+                    $('.gotoRead').attr('href',href);
+                    $('.img').attr('src',book.img);
+                    $('.title').html(book.title);
+                    $('.author').html(book.author);
+                    $('.summary').html("<P>" +book.summary+  "</P>")
+                    // $.each(result)
+                }
+
+
+
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+            }
+        })
+    });
+
+
+    //获取页面参数
+    function getQueryVariable(variable)
+    {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i=0;i<vars.length;i++) {
+            let pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+
+</script>

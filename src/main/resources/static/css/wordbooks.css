@@ -1,0 +1,66 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+.wordbooks{
+    display: flex;
+    flex-wrap: wrap
+}
+
+.wordbooks div{
+    width: calc(100% / 3);
+    padding: 5%;
+
+}
+
+.wordbooks div img{
+    width: 100%;
+    border-radius: 5%;
+    cursor: pointer;
+}
+.wordbooks div p{
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    font-family: "华文细黑";
+    padding-bottom: 2px;
+    margin: 0;
+    color: #3c3c3c;
+    font-weight: bold;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...*/
+}
+
+a{
+    color: #000;
+    text-decoration: none;
+}
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    .wordbooks div p{
+        font-size: 18px;
+        line-height: 140%;
+    }
+    .topTab  p{
+        font-size: 24px;
+        line-height: 40px;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    .wordbooks div p{
+        font-size: 22px;
+        line-height: 140%;
+    }
+    .topTab  p{
+        font-size: 24px;
+        line-height: 40px;
+    }
+}
+
+
+

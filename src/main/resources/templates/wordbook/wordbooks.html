@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>词库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/wordbooks.css">
+    <link rel="stylesheet" href="/css/toptab.css">
+<!--    底部样式-->
+    <link rel="stylesheet" href="/css/footer.css">
+
+</head>
+<body style="background-color: #efefef;">
+<!--    <button id="back" style="width: 100px;height: 50px;">返回</button>-->
+
+<div id="topTab" class="topTab container">
+    <div class="row">
+        <div class="back col-xs-2 col-md-1 col-md-offset-1 " style="cursor: pointer">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </div>
+        <div class="col-xs-8 col-md-8" style="position:relative;display:flex;justify-content: center;">
+            <div style="padding-left: 15px;position:relative;">
+                <p style="font-weight: 700;">词库 </p>
+                <div class="tabBlock" style="position:absolute;width: 15px;height: 4px;background-color:#233333;bottom: 2px;right: 8px;"></div>
+            </div>
+            <div>&nbsp;|&nbsp;</div>
+            <div>
+                <a href="/wordbook/gotoMyWordbooks"><p style="padding-left: 0;">我的</p></a>
+            </div>
+<!--            <p style="display: inline-block;position:relative;"><span></span> | <span></span></p>-->
+
+        </div>
+        <div class="gotoBookDetail col-xs-2" style="cursor: pointer">
+            <span class="glyphicon glyphicon-option-vertical"></span></div>
+    </div>
+</div>
+
+<!--    //词库-->
+    <div class="container" style="padding-top: 60px;">
+        <div class="row wordbooks" >
+<!--            词书图片暂未解决-->
+<!--            <div>-->
+<!--                <img src="/img/wordbook/cet4core.jpg" >-->
+<!--                <p class="wordbookName">四级真题词汇</p>-->
+<!--                <p class="wordbookCount">-->
+<!--                    <span class="label label-primary">123词</span>-->
+<!--                </p>-->
+<!--            </div>-->
+
+
+<!--            词书列表，三个一组-->
+
+
+        </div>
+    </div>
+
+
+
+<!--底部-->
+<div style="height: 50px;"></div>
+<!--    移动端显示此底部栏-->
+<footer class="footer navbar-fixed-bottom  visible-xs-block"
+        style="padding: 5px 0 0 0;">
+
+    <div class="bottomFuns" style="display: flex;justify-content:space-between;flex-grow: inherit;margin: 0;">
+
+        <div class="bottomFun">
+
+                <p class="text-center font-18"><img src="/img/wordbookClicked.png" style="height: 30px;" alt=""></p>
+                <p class="text-center font-14">词库</p>
+
+        </div>
+        <div class="bottomFun">
+            <a href="/notebook/gotoNotebook">
+                <p class="text-center font-18"><img src="/img/notebook.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">生词</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/">
+                <p class="text-center font-18"><img src="/img/index.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">首页</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/book/gotoShelf">
+                <p class="text-center font-18"><img src="/img/novel.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">小说</p>
+            </a>
+        </div>
+        <div class="bottomFun">
+            <a href="/learner/profile">
+                <p class="text-center font-18"><img src="/img/mine.png" style="height: 30px" alt=""></p>
+                <p class="text-center font-14">我的</p>
+            </a>
+        </div>
+    </div>
+
+</footer>
+</body>
+
+</html>
+<script src="/jq/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            async: true,     //异步执行
+            contentType: "application/json;charset=UTF-8",
+            url: "/wordbook/",
+            dataType: "json", //json类型
+            success: function (result) {
+                console.log(result)
+                if(result.code === 200){
+                    $.each(result.wordbooks,function (i,item) {
+                        // $("#wordbooks").append("<a href='/wordbook/gotoWordbookDetail?id=" + item.id+ "');'>"+item.name+"</a><br>")
+                        // let img = "/img/wordbook/cet4core.jpg";
+                        $(".wordbooks").append("<div>\n" +
+                            "                <a href='/wordbook/gotoWordbookDetail?id="+ item.id +"'>" +
+                            "               <img src=\""+ item.img +"\" ></a>\n" +
+                            "                <p class=\"wordbookName\">"+ item.name +"</p>\n" +
+                            "                <p class=\"wordbookCount\">\n" +
+                            "                    <span class=\"label label-primary\">"+ item.count +"词</span>\n" +
+                            "                </p>\n" +
+                            "            </div>")
+
+                    })
+
+
+
+                }
+            },
+            error: function (errmsg) {
+                console.log("Ajax获取服务器数据出错了！" + errmsg);
+            }
+        })
+
+    });
+
+    //查询我的词书
+    $("#showMyWordbooks").click(function () {
+        window.location.href = "/wordbook/gotoMyWordbooks";
+    });
+
+    //返回
+    $(".back").click(function () {
+        //回退
+        window.location.href = "/";
+    })
+
+
+
+
+</script>

@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+.topTab{
+    width: 100%;
+    position: fixed;
+    background-color: #cacbd0;
+    height: 50px;
+    padding: 5px 15px 5px 15px;
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    box-shadow: 0px 2px 2px rgba(34, 51, 51, 0.53);
+}
+.topTab .row{
+    height: 30px;
+    /*padding: 10px 0 10px 0;*/
+}
+.topTab span{
+    width: 80%;
+}
+.topTab .back{
+
+}
+.topTab {
+    text-align: center;
+}
+.topTab a{
+    text-decoration: none;
+    color: #000;
+}
+.topTab  p{
+    font-size: 18px;
+    margin: 0;
+    /*padding: 0 0 0 15px;*/
+    padding: 0;
+    cursor: pointer;
+
+}
+.topTab  p:hover{
+    background-color: rgba(60, 60, 60, 0.51);
+}
+
+.topTab .back span:hover, .topTab .gotoBookDetail span:hover{
+    background-color: rgba(60, 60, 60, 0.62);
+
+}
+
+
+.myBooks{
+    display: flex;
+    flex-wrap: wrap
+
+}
+.myBooks .book{
+    width: calc(100% / 3 - 10%);
+    margin: 5% 5% 0 5%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 5px 5px 5px #000;
+    background-color: transparent;
+    -moz-border-radius: 7%;
+    -webkit-border-radius: 7%;
+    border-radius: 7%;
+
+}
+
+
+.myBooks .book .bookNameBox{
+    width: 100%;
+    padding: 5px;
+    position: absolute;
+    bottom: 5%;
+    background-color: rgba(0, 0, 0, 0.5);
+    max-height: 80px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.myBooks .book img{
+    width: 100%;
+    border-radius: 7%;
+
+
+}
+.myBooks .book .bookNameBox p{
+    text-align: center;
+    font-size: 12px;
+    line-height: 14px;
+    font-family: "华文细黑";
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    color: whitesmoke;
+    pointer-events: none;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...*/
+}
+
+
+.bookName{
+    pointer-events: none;
+}
+
+
+
+/*屏幕大于640px使用*/
+@media screen and (min-width: 640px) {
+    .myBooks .book .bookNameBox p{
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .topTab  p{
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+
+/*屏幕大于800px使用*/
+@media screen and (min-width: 800px) {
+    .myBooks .book .bookNameBox  p{
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .topTab  p{
+        font-size: 24px;
+        line-height: 40px;
+    }
+}
