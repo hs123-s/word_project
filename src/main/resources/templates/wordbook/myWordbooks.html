@@ -130,7 +130,7 @@
             dataType: "json", //json类型
             success: function (result) {
                 if(result.code === 200){
-                    console.log(result)
+                    // console.log(result)
                     $.each(result.wordbooks,function (i,item) {
                         // $("#myWordbooks").append("<a href='/wordbook/gotoMyWordbookDetail?id=" + item.id+ "');'>"+item.name+"</a><br>")
                         //如果是当前计划
@@ -156,7 +156,7 @@
                     //设为计划:重定向。先去后台，再重定向
                     $(".planBtn").on('click',this,function () {
                         //获取当前的计划词书
-                        console.log(this)
+                        // console.log(this)
                         let id = $(this).attr("content");
                     });
 
@@ -174,7 +174,7 @@
         ////跳转至词库
         $(".addBtn").on('click',this,function () {
 
-            console.log(this)
+            // console.log(this)
         });
     })
 

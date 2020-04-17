@@ -63,7 +63,7 @@ public class WordEctController {
     @RequestMapping(value = "/findWordDetailJson/{word}",produces = "application/json;charset=utf-8;")
     public @ResponseBody WordEctDetailJson findWordDetailJSON(@PathVariable("word") String word, HttpSession session){
 
-        Integer learner_id = (Integer) session.getAttribute("learner_id");
+        Integer learner_id = (Integer) session.getAttribute("learnerId");
         wordEctDetailJson = wordEctService.findWordDetail(word,learner_id);
 
         return wordEctDetailJson;
@@ -89,7 +89,7 @@ public class WordEctController {
      */
     @RequestMapping(value = "/findWord/{word}",produces = "application/json;charset=utf-8;")
     public @ResponseBody WordEctJson findWord(@PathVariable("word") String word,HttpSession session){
-        Integer learner_id = (Integer) session.getAttribute("learner_id");
+        Integer learner_id = (Integer) session.getAttribute("learnerId");
         wordEctJson = wordEctService.findWord(word,learner_id);
 
         return wordEctJson;

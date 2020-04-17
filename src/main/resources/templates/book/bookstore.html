@@ -187,7 +187,7 @@
             url: url,
             dataType: "json", //json类型
             success: function (result) {
-                console.log(result);
+                // console.log(result);
                 $(".hotTags").removeClass("hotTagsActive");
                 if(result.code === 200){
                     //暂不自增
@@ -230,8 +230,8 @@
         //回车
        if(event.keyCode == 13){
            let bookName = $(this).val().trim();
-           console.log(bookName);
-           console.log(bookName.length);
+           // console.log(bookName);
+           // console.log(bookName.length);
            if(bookName.length >= 30){
                alert("参数过长！");
                return;
@@ -248,7 +248,7 @@
                    url: url,
                    dataType: "json", //json类型
                    success: function (result) {
-                       console.log(result);
+                       // console.log(result);
                        $(".hotTags").removeClass("hotTagsActive");
                        if(result.code === 200){
 
@@ -296,7 +296,7 @@
             url: "/book/hotbooks",
             dataType: "json", //json类型
             success: function (result) {
-                console.log(result);
+                // console.log(result);
                 if(result.code === 200){
                     $.each(result.books,function (i,item) {
                         // $("#hotbooks").append("<a href='/book/gotoBookDetail?index_book="+ item.index_book+"'>"+item.title+"</a><br>")

@@ -6,14 +6,20 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * 用于存放book的json
+ */
 @Component
 @Scope("prototype")
 public class BookJson extends JsonBase {
 
+    //单个book
     private Book book;
 
+    //多个books
     private List<Book> books;
 
+    //是否已加入书架，这里只有在书籍详情才能看到是否加入书架，在书籍列表是看不到的
     private Integer is_add = 0;
 
 

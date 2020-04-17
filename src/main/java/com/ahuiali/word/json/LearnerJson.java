@@ -4,6 +4,9 @@ import com.ahuiali.word.pojo.Learner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * 用于存放用户的json
+ */
 @Component
 @Scope("prototype")
 public class LearnerJson extends JsonBase {

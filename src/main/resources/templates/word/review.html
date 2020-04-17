@@ -256,7 +256,7 @@
                 url: "/wordect//findWordDetailJson/"+word,
                 dataType: "json", //json类型
                 success: function(result) {
-                    console.log(result);
+                    // console.log(result);
 
                     if(result.code == 200){
                         let word = result.wordEctDetail;
@@ -320,7 +320,7 @@
             dataType: "json", //json类型
             success: function(result) {
                 // var result = JSON.stringify(result);  // 需解析，否则返回 object
-                console.log(result);
+                // console.log(result);
                 if(result.code == 200){
                     words = result.words;
 
@@ -343,7 +343,7 @@
         });
 
         $("#demo").click(function () {
-            console.log(app.words[1].word);
+            // console.log(app.words[1].word);
         });
         //点击下一个
         $(".nextWord").click(function () {
@@ -382,7 +382,7 @@
                     url: "/wordbook/myWordbook/review",
                     dataType: "json", //json类型
                     success: function(result) {
-                        console.log(result);
+                        // console.log(result);
                         if(result.code == 200){
 
                         }
@@ -428,7 +428,7 @@
             dataType: "json", //json类型
             success: function(result) {
                 // var result = JSON.stringify(result);  // 需解析，否则返回 object
-                console.log(result);
+                // console.log(result);
                 if(result.code == 200){
                     words = result.words;
 

@@ -83,7 +83,7 @@ public class WordEctServiceImpl implements WordEctService {
             System.out.println(wordEctDetail.toString());
         } else{
             //从数据库中查询
-            wordEctDetail = wordEctMapper.findWordEctDetail(word,21);
+            wordEctDetail = wordEctMapper.findWordEctDetail(word,learner_id);
 
             //数据库中仍找不到
             if(wordEctDetail == null){

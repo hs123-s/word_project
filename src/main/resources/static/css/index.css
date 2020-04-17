@@ -22,26 +22,10 @@ li{
 p{
     font-size: 18px;
     color: #223333;
-    font-family: "华文细黑";
-    font-weight: 700;
-}
-.font-14{
-    font-size: 14px;
-
+    /*font-family: "华文细黑";*/
+    /*font-weight: 700;*/
 }
 
-.font-16{
-    font-size: 16px;
-
-}
-.font-18{
-    font-size: 18px;
-
-}
-.font-22{
-    font-size: 20px;
-
-}
 
 p>span{
     cursor: pointer;
@@ -49,14 +33,14 @@ p>span{
     background-color: transparent;
     padding: 1px;
 }
-.bottomFun{
-    cursor: pointer;
-    line-height: 14px;
-    padding: 0 20px;
-}
-.bottomFun p{
-    margin: 2px 0 4px;
-}
+/*.bottomFun{*/
+/*    cursor: pointer;*/
+/*    !*line-height: 14px;*!*/
+/*    padding: 0 20px;*/
+/*}*/
+/*.bottomFun p{*/
+/*    margin: 2px 0 4px;*/
+/*}*/
 .wordbook{
     /*border: rgba(87, 128, 255, 0.69) 2px solid;*/
     box-shadow: rgb(34, 51, 51) 0px 5px 5px;
@@ -75,6 +59,7 @@ p>span{
 }
 .gotoReviewBtn{
     background-color: rgba(79, 171, 56, 0.36);
+
 }
 .gotoWordBtn:hover{
     background-color: rgba(104, 207, 255, 0.36);

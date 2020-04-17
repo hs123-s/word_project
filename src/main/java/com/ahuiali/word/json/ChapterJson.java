@@ -5,11 +5,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ *  用于存放章节的json
+ */
 @Component
 public class ChapterJson extends JsonBase{
 
+    //多个章节
     List<Chapter> chapters;
 
+    //章节详情的章节
     Chapter chapter;
 
     public List<Chapter> getChapters() {

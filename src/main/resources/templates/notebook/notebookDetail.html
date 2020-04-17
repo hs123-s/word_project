@@ -106,10 +106,10 @@
             url: "/notebook/listWords/"+notebookId,
             dataType: "json", //json类型
             success: function (result) {
-                console.log(result);
+                // console.log(result);
                 if(result.code === 200){
                     curr++;
-                    console.log(curr);
+                    // console.log(curr);
                     $.each(result.words,function (i,item) {
                         // $("#words").append("<a href='/wordect/gotoWordDetail/"+ item.word+"'>"+item.word+"</a><br>")
                         $("#words").append("<div class=\"row\">\n" +
@@ -154,7 +154,7 @@
             dataType: "json", //json类型
             success: function (result) {
                 if(result.code === 200){
-                    console.log(result);
+                    // console.log(result);
                     $.each(result.words,function (i,item) {
 
                         $("#words").append("<a href='/notebook/'>"+item.word+"</a><br>")

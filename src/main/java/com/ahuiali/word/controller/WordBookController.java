@@ -171,31 +171,6 @@ public class WordBookController {
         return wordbookJson;
     }
 
-    /**
-     * 查询我的词书(-)
-     * @param session
-     * @return
-     */
-    @RequestMapping(value = "/index" )
-    public String  myMemorizingWordbooks(HttpSession session, Map map){
-        //获取学习者id
-
-//       Integer learnerId = (Integer) session.getAttribute("learnerId");
-        Integer learnerId = 21;
-        Integer review = 0;
-
-
-
-//            SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-//            Date date = new Date();
-//            String dateStr = sdf.format(date);
-//            review = wordbookService.findReviewCount(learnerId,wordbook.getId());
-
-
-        return "index";
-    }
-
-
 
     /**
      * 我的词书的单词类型

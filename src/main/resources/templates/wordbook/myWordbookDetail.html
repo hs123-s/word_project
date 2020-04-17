@@ -177,7 +177,7 @@
             success: function(result) {
                 currUn++;
                 unFlag = false;
-                console.log(result)
+                // console.log(result)
                 if(result.code == 200){
                     $.each(result.words,function (i,item) {
                         $('.unWordList').append("<div class=\"wordBox\">\n" +
@@ -258,7 +258,7 @@
             url: "/wordbook/myWordbook/words/" +wordbookId+ "/"+type,
             dataType: "json", //json类型
             success: function(result) {
-                console.log(result);
+                // console.log(result);
                 let data;
                 if(result.code == 200){
                     data = result.words;

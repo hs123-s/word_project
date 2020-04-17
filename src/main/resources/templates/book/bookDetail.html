@@ -249,7 +249,7 @@
                 url: "/book/mybook/chapters/"+index_book,
                 dataType: "json", //json类型
                 success: function (result) {
-                    console.log(result);
+                    // console.log(result);
                     if(result.code === 200){
                         curr++;
                         $.each(result.chapters,function (i,item) {
@@ -281,7 +281,7 @@
             url: "/book/bookDetail/"+index_book,
             dataType: "json", //json类型
             success: function (result) {
-                console.log(result);
+                // console.log(result);
 
                 if(result.code == 200){
                     let book = result.book;

@@ -120,7 +120,7 @@
         url: "/wordect/findWordDetailJson/"+getQueryVariable('word'),
         dataType: "json", //json类型
         success: function(result) {
-            console.log(result);
+            // console.log(result);
 
             if(result.code == 200){
                 let word = result.wordEctDetail;
@@ -139,21 +139,24 @@
                 $(".wordPara .wordParaP").html(word.translation.replace(/\\n/gi,"<br>"));
                 //清空例句
                 $(".sentences").html("");
-                //重新写入例句
-                $.each(word.sentences,function (i,item) {
-                    $(".sentences").append("<div class=\"row sentence\">\n" +
-                        "        <div class=\"col-xs-12 sentence_en\">\n" +
-                        "            <p>"+ parseInt(parseInt(i)+1) +". "+ item.en +
-                        "               <span content='"+ item.en +"' class='glyphicon glyphicon-volume-down sentencePron'></span>" +
-                        "           </p> " +
-                        "        </div>\n" +
-                        "\n" +
-                        "        <div class=\"col-xs-12 sentence_cn\">\n" +
-                        "            <p>" + item.cn +
-                        "                </p>\n" +
-                        "        </div>\n" +
-                        "    </div>")
-                })
+                //如果找不到例句，直接返回
+                if(!undefined === word.sentences && null != word.sentences && "" != word.sentences){
+                    //重新写入例句
+                    $.each(word.sentences,function (i,item) {
+                        $(".sentences").append("<div class=\"row sentence\">\n" +
+                            "        <div class=\"col-xs-12 sentence_en\">\n" +
+                            "            <p>"+ parseInt(parseInt(i)+1) +". "+ item.en +
+                            "               <span content='"+ item.en +"' class='glyphicon glyphicon-volume-down sentencePron'></span>" +
+                            "           </p> " +
+                            "        </div>\n" +
+                            "\n" +
+                            "        <div class=\"col-xs-12 sentence_cn\">\n" +
+                            "            <p>" + item.cn +
+                            "                </p>\n" +
+                            "        </div>\n" +
+                            "    </div>")
+                    })
+                }
 
             }
 
